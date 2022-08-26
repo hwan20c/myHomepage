@@ -24,6 +24,8 @@ $(document).ready(function(){
 	    }
 	});
 	
+	//ds test
+	
 	function send(){
 	
 	   let msg = document.getElementById("msg");

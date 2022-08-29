@@ -13,7 +13,7 @@ public class MainController {
 		System.out.println("@ChatController, chat GET()");
 		
 //		return "/index";
-		return "/chat";
+		return "chat";
 	}
 
 }

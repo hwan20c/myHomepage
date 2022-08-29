@@ -59,31 +59,29 @@ $(document).ready(function(){
 	
 	ipCheck().then(function onOpen(evt) {
 	    var str = username + ": 님이 입장하셨습니다.";
-	    checkBeforeSend();
 	    websocket.send(str);
 	});
 	
-	//처음 onopen 되기전에 send를 보내는 경우
-	async function checkBeforeSend() {
-    	await checkConnection();
-	}
-	
-	let connection_resolvers = [];
-	let checkConnection = () => {
-	    return new Promise((resolve, reject) => {
-	        if (websocket.readyState === WebSocket.OPEN) {
-	            resolve();
+	this.send = function (message, callback) {
+	    this.waitForConnection(function () {
+	        websocket.send(message);
+	        if (typeof callback !== 'undefined') {
+	          callback();
 	        }
-	        else {
-	            connection_resolvers.push({resolve, reject});
-	        }
-    	});
-	}
+	    }, 1000);
+	};
 
-	websocket.addEventListener('open', () => {
-	    connection_resolvers.forEach(r => r.resolve())
-	});
-	
+	this.waitForConnection = function (callback, interval) {
+	    if (websocket.readyState === 1) {
+	        callback();
+	    } else {
+	        var that = this;
+	        // optional: implement backoff for interval here
+	        setTimeout(function () {
+	            that.waitForConnection(callback, interval);
+	        }, interval);
+	    }
+	};
 	
 	function onMessage(msg) {
 	    var data = msg.data;

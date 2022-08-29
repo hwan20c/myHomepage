@@ -59,29 +59,31 @@ $(document).ready(function(){
 	
 	ipCheck().then(function onOpen(evt) {
 	    var str = username + ": 님이 입장하셨습니다.";
+	    
+	    this.send = function (message, callback) {
+		    this.waitForConnection(function () {
+		        websocket.send(message);
+		        if (typeof callback !== 'undefined') {
+		          callback();
+		        }
+		    }, 1000);
+		};
+		
+		this.waitForConnection = function (callback, interval) {
+		    if (websocket.readyState === 1) {
+		        callback();
+		    } else {
+		        var that = this;
+		        // optional: implement backoff for interval here
+		        setTimeout(function () {
+		            that.waitForConnection(callback, interval);
+		        }, interval);
+		    }
+		};
+		
 	    websocket.send(str);
 	});
 	
-	this.send = function (message, callback) {
-	    this.waitForConnection(function () {
-	        websocket.send(message);
-	        if (typeof callback !== 'undefined') {
-	          callback();
-	        }
-	    }, 1000);
-	};
-
-	this.waitForConnection = function (callback, interval) {
-	    if (websocket.readyState === 1) {
-	        callback();
-	    } else {
-	        var that = this;
-	        // optional: implement backoff for interval here
-	        setTimeout(function () {
-	            that.waitForConnection(callback, interval);
-	        }, interval);
-	    }
-	};
 	
 	function onMessage(msg) {
 	    var data = msg.data;

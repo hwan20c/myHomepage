@@ -47,7 +47,6 @@ $(document).ready(function(){
 	let username = "";
 	function ipCheck(callback) {
 		return new Promise(function(resolve, reject) {
-			websocket.onopen;
 			$.getJSON("https://api.ipify.org?format=jsonp&callback=?",		
 			function(json) {
 				var ipArray=json.ip.split('.');
@@ -58,7 +57,7 @@ $(document).ready(function(){
 	};
 	ipCheck().then(function onOpen(evt) {
 	    var str = username + ": 님이 입장하셨습니다.";
-	    websocket.send(str);
+	    websocket.onopen = () => websocket.send(str);
 	});
 	
 	function onMessage(msg) {

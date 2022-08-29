@@ -45,6 +45,7 @@ $(document).ready(function(){
 	
 	//채팅창에 들어왔을 때
 	let username = "";
+	
 	function ipCheck(callback) {
 		return new Promise(function(resolve, reject) {
 			$.getJSON("https://api.ipify.org?format=jsonp&callback=?",		
@@ -55,9 +56,10 @@ $(document).ready(function(){
 			});		
 		});
 	};
+	
 	ipCheck().then(function onOpen(evt) {
 	    var str = username + ": 님이 입장하셨습니다.";
-	    websocket.onopen = () => websocket.send(str);
+	    websocket.send(str);
 	});
 	
 	function onMessage(msg) {

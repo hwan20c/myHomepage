@@ -6,7 +6,7 @@ $(document).ready(function(){
 	const websocket = new WebSocket("ws://3.39.231.146:8080/ws/chat");
 	
 	websocket.onmessage = onMessage;
-	websocket.onopen = () => ipCheck;
+	websocket.onopen = ipCheck;
 	websocket.onclose = onClose;
 	
 	$("#disconn").on("click", (e) => {
@@ -57,7 +57,7 @@ $(document).ready(function(){
 	};
 	ipCheck().then(function onOpen(evt) {
 	    var str = username + ": 님이 입장하셨습니다.";
-	    websocket.send(str);
+	    websocket.onopen = () => websocket.send(str);
 	});
 	
 	function onMessage(msg) {

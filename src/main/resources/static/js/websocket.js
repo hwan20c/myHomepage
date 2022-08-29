@@ -1,10 +1,12 @@
 $(document).ready(function(){
 
+	//local
 	//const websocket = new WebSocket("ws://localhost:8080/ws/chat");
+	//amazon
 	const websocket = new WebSocket("ws://3.39.231.146:8080/ws/chat");
 	
 	websocket.onmessage = onMessage;
-	websocket.onopen = ipCheck;
+	websocket.onopen = () => ipCheck;
 	websocket.onclose = onClose;
 	
 	$("#disconn").on("click", (e) => {
@@ -25,14 +27,13 @@ $(document).ready(function(){
 	    }
 	});
 	
-	//ds test
-	
 	function send(){
 	
 	   let msg = document.getElementById("msg");
 	
 	   console.log(username + ":" + msg.value);
 	   websocket.send(username + ":" + msg.value);
+	   
 	   msg.value = '';
 	}
 	

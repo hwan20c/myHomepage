@@ -10,10 +10,7 @@ public class MainController {
 	@GetMapping("/")
 	public String mainpage(Model model) {
 		
-		System.out.println("@ChatController, chat GET()");
-		
-//		return "/index";
-		return "chat";
+		return "index";
 	}
 
 }

@@ -63,7 +63,6 @@ $(document).ready(function(){
 	    waitForSocketConnection (websocket, function() {
             websocket.send(str);
         });
-	    //websocket.send(str);
 	});
 	
 	function waitForSocketConnection(socket, callback){

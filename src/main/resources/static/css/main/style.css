@@ -1,0 +1,14 @@
+.hidden {
+    display: none;
+}
+
+body, html {
+    height: 100%;
+}
+
+#loginClock {
+    position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

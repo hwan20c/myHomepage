@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet" th:href="@{./css/chat/chat.css}">
-
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{base}">
 <head>
 <meta charset="UTF-8">
 <title>chat</title>
+<link rel="stylesheet" th:href="@{./css/chat/chat.css}">
 </head>
  <body>
+	<div layout:fragment="page_content">
         <th:block th:fragment="content">
 	        <div class="container" id="chatArea">
 	            <div class="col-6">
@@ -29,6 +28,9 @@
 	            </div>
 	        </div>
     	</th:block>
+	</div>
     </body>
-    <script th:src="@{./js/websocket/websocket.js}"></script>
+	<div layout:fragment="script_area">
+    	<script th:src="@{./js/websocket/websocket.js}"></script>
+	</div>
 </html>

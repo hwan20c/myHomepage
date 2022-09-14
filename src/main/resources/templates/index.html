@@ -1,38 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{base}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main/style.css">
-    <title>Momentum App</title>
+    <title>Hwan's page</title>
 </head>
 <body>
-    <div id="loginClock">
-        <form class="hidden" id="login-form">
-            <input required maxlength="15" type="text" placeholder="What is your name?" />
-            <input type="submit" value="Log In" />
+    <div layout:fragment="page_content">
+        <div id="loginClock">
+            <form class="hidden" id="login-form">
+                <input required maxlength="15" type="text" placeholder="What is your name?" />
+                <input type="submit" value="Log In" />
+            </form>
+            <h2 id="clock">00:00:00</h2>
+            <h1 id="greeting" class="hidden"></h1>
+        </div>
+        <form id="todo-form">
+            <input type="text" placeholder="Write a To Do and Press Enter"  required />
         </form>
-        <h2 id="clock">00:00:00</h2>
-        <h1 id="greeting" class="hidden"></h1>
+        <ul id="todo-list"></ul>
+        <div id="quote">
+            <span></span><br>
+            <span></span>
+        </div>
+        <div id="weather">
+            <span></span>
+            <span></span>
+        </div>
     </div>
-    <form id="todo-form">
-        <input type="text" placeholder="Write a To Do and Press Enter"  required />
-    </form>
-    <ul id="todo-list"></ul>
-    <div id="quote">
-        <span></span>
-        <span></span>
+    <div layout:fragment="script_area">
+        <script src="./js/main/greetings.js"></script>
+        <script src="./js/main/clock.js"></script>
+        <script src="./js/main/quotes.js"></script>
+        <script src="./js/main/backgroud.js"></script>
+        <script src="./js/main/todo.js"></script>
+        <script src="./js/main/weather.js"></script>
     </div>
-    <div id="weather">
-        <span></span>
-        <span></span>
-    </div>
-    <script src="./js/main/greetings.js"></script>
-    <script src="./js/main/clock.js"></script>
-    <script src="./js/main/quotes.js"></script>
-    <script src="./js/main/backgroud.js"></script>
-    <script src="./js/main/todo.js"></script>
-    <script src="./js/main/weather.js"></script>
 </body>
 </html>

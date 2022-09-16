@@ -68,6 +68,7 @@ color: rgb(249, 255, 248);
     position:absolute;
     top:0;
     right:0;
+    z-index: 10;
 }
 
 #weather span:last-child {

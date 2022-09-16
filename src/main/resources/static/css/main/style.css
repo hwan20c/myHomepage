@@ -7,6 +7,32 @@ body, html {
     color: white;
 }
 
+.loginField {
+  font-family: inherit;
+  width: 85%;
+  border: 0;
+  outline: 0;
+  font-size: 2.3rem;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  color: white;
+}
+.loginField::placeholder {
+    color: rgb(249, 255, 248);
+    opacity: 1; /* Firefox */
+  }
+.loginField:-ms-input-placeholder { /* Internet Explorer 10-11 */
+color: rgb(249, 255, 248);
+}
+.loginField::-ms-input-placeholder { /* Microsoft Edge */
+color: rgb(249, 255, 248);
+}
+
+#login-form input:last-child {
+    padding: 10px;
+}
+
 #loginClock {
     position: fixed;
     top: 50%;

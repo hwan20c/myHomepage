@@ -14,10 +14,12 @@
 <body>
     <div layout:fragment="page_content">
         <div id="loginClock">
-            <form class="hidden" id="login-form">
-                <input required maxlength="15" type="text" placeholder="What is your name?" />
-                <input type="submit" value="Log In" />
-            </form>
+            <div>
+                <form class="hidden" id="login-form">
+                    <input class="loginField" required maxlength="15" type="text" placeholder="What is your name?" />
+                    <input type="submit" value="Log In" />
+                </form>
+            </div>
             <h1 id="greeting" class="hidden"></h1>
             <h2 id="clock">00:00:00</h2>
         </div>

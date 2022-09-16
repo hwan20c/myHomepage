@@ -17,13 +17,17 @@
     bottom: 1%;
     right: 15px;
     z-index: 9;
-    background-image: linear-gradient(to right, #00b4db, #0083b0);
+    background-image: radial-gradient(circle farthest-side, #fceabb, #f8b500);
     padding: 10px;
     border-radius: 12px;
   }
 
 #todoPopup h2{
     color: rgb(0, 0, 0);
+}
+
+#todoPopup form input{
+    width: 250px;
 }
 
 #todoPopup ul li {
@@ -42,5 +46,5 @@
     cursor: pointer;
     margin-bottom:10px;
     opacity: 0.8;
-  }
+}
   

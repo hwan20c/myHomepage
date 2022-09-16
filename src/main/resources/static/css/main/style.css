@@ -20,10 +20,6 @@ body, html {
     font-size : 130px;
 }
 
-#todo-list {
-
-}
-
 #quote {
     position: fixed;
     width: max-content;
@@ -50,4 +46,8 @@ body, html {
 
 #weather span:last-child {
     float: right;
+}
+
+#todo-list {
+
 }

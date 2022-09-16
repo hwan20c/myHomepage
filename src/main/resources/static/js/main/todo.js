@@ -1,6 +1,8 @@
 const toDoForm = document.getElementById("todo-form");
 const toDoInput = document.querySelector("#todo-form input");
 const toDoList = document.getElementById("todo-list");
+const openBtn = document.getElementById("openBtn");
+const closeBtn = document.getElementById("closeBtn");
 
 const TODOS_KEY = "todos";
 
@@ -23,7 +25,7 @@ function paintToDo(newTodo) {
     const span = document.createElement("span");
     span.innerText = newTodo.text;
     const button = document.createElement("button");
-    button.innerText = "❌";
+    button.innerText = "x";
     button.addEventListener("click", deleteTodo);
     li.appendChild(span);
     li.appendChild(button);
@@ -51,3 +53,16 @@ if(savedToDos !== null) {
     toDos = parsedTodos;
     parsedTodos.forEach(paintToDo);
 }
+
+openBtn.addEventListener("click", openForm);
+closeBtn.addEventListener("click", closeForm);
+
+
+function openForm() {
+    document.getElementById("todoPopup").style.display = "block";
+}
+function closeForm() {
+    document.getElementById("todoPopup").style.display = "none";
+}
+
+

@@ -6,12 +6,25 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/main/base.css">
 </head>
 <title>
 </title>
 </head>
 <body>
     <div layout:fragment="page_content"></div>
+    <button id="openBtn" class="open-button">Todo</button>
+    <div id="todoPopup">
+        <h2>todo-list</h1>
+        <form id="todo-form">
+            <input type="text" placeholder="Write a To Do and Press Enter"  required />
+        </form>
+        <ul id="todo-list"></ul>
+        <div class="text-right">
+            <button id="closeBtn" type="button" class="btn btn-outline-secondary">Close</button>
+        </div>
+    </div>
     <div layout:fragment="script_area"></div>
+    <script src="./js/main/todo.js"></script>
 </body>
 </html>

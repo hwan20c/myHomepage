@@ -8,10 +8,10 @@ body, html {
 }
 
 #loginClock {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #loginClock #clock{
@@ -25,7 +25,20 @@ body, html {
 }
 
 #quote {
+    position: fixed;
+    width: max-content;
+    left: 50%;
+    bottom: 20px;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+}
 
+#quote span:first-child {
+    font-size: 26px;
+}
+
+#quote span:last-child {
+    float: right;
 }
 
 #weather {

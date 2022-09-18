@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
 	//local
-	//const websocket = new WebSocket("ws://localhost:8080/ws/chat");
+	// const websocket = new WebSocket("ws://localhost:8080/ws/chat");
 	//amazon
-	const websocket = new WebSocket("wss://3.39.231.146:8080/ws/chat");
+	const websocket = new WebSocket("ws://3.39.231.146:8080/ws/chat");
 	
 	websocket.onmessage = onMessage;
 	websocket.onopen = ipCheck;

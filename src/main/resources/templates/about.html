@@ -4,17 +4,579 @@ xmlns="http://www.w3.org/1999/xhtml"
 xmlns:th="http://www.thymeleaf.org"
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 layout:decorate="~{base}">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-</head>
-<body>
-    <div layout:fragment="page_content" id="page_content">
-        <!-- asdfafdsf<br>afdasf<br>dsafdasf -->
-    </div>
-    <div layout:fragment="script_area">
-    </div>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>About</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="./img/assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="./css/about/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <div layout:fragment="page_content" id="page_content">
+        <!-- Masthead-->
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+                <!-- Masthead Avatar Image-->
+                <img class="masthead-avatar mb-5" src="./img/assets/me.jpeg" alt="..." />
+                <!-- Masthead Heading-->
+                <h1 class="masthead-heading text-uppercase mb-0">최 병 환</h1>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Masthead Subheading-->
+                <p class="masthead-subheading font-weight-light mb-0">Full-Stack Engneer</p>
+            </div>
+        </header>
+        <!-- Portfolio Section-->
+        <section class="page-section portfolio" id="portfolio">
+            <div class="container">
+                <!-- Portfolio Section Heading-->
+                <h2 class="page-section-heading text-center text-secondary mb-0">Used Tech Stack</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Grid Items-->
+                <div class="d-flex justify-content-center">
+                    <div class="row justify-content-center w-50">
+                        <!-- Portfolio Item 1-->
+                        <div class="col-md-6 col-lg-4 mb-5">
+                            <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                                <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                    <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/language.png" alt="..." />
+                            </div>
+                        </div>
+                        <!-- Portfolio Item 2-->
+                        <div class="col-md-6 col-lg-4 mb-5">
+                            <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
+                                <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                    <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frontend.jpeg" alt="..." />
+                            </div>
+                        </div>
+                        <!-- Portfolio Item 3-->
+                        <div class="col-md-6 col-lg-4 mb-5">
+                            <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
+                                <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                    <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/backend.jpeg" alt="..." />
+                            </div>
+                        </div>
+                        <!-- Portfolio Item 4-->
+                        <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+                            <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal4">
+                                <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                    <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/database.png" alt="..." />
+                            </div>
+                        </div>
+                        <!-- Portfolio Item 5-->
+                        <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
+                            <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
+                                <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                    <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/cloud.png" alt="..." />
+                            </div>
+                        </div>
+                        <!-- Portfolio Item 6-->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal6">
+                                <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                    <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/etc.png" alt="..." />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Section-->
+        <section class="page-section bg-primary text-white mb-0" id="about">
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- About Section Content-->
+                <div class="row">
+                    <div class="ms-auto">
+                        <p class="lead">
+                        안녕하세요.<br>
+                        홈페이지를 찾아와 주셔서 감사합니다.<br>
+                        저는 컴퓨터를 좋아하는 개발자 입니다.<br>
+                        새로운 도전을 즐기며, 재미있고 열정적인 사람들과 일하고 싶습니다.<br>
+                        결과를 도출해 내는 것을 좋아하고, 합의가 안 될시에는 팀 전체가 원하는 방향으로 토의를 하여 해결합니다.<br>
+                        함께하면 즐거운 개발자가 되고 싶습니다.<br>
+                        감사합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Copyright Section-->
+        <div class="email-section py-3 text-left text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        hwan20c@gmail.com
+                    </div>
+                    <div class="col-6 text-right">
+                        Copyright &copy; cb0h.cf
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modals-->
+        <!-- Portfolio Modal 1-->
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">language</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <div class="d-flex justify-content-center">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/language/java.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/language/js.png" alt="..." />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">JAVA와 JS를 할 수 있습니다.</p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 2-->
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Front End</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <div class="d-flex justify-content-center">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/frontend/javafx.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/frontend/bootstrap.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/frontend/jquery.png" alt="..." />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Portfolio Modal - Text-->
+                                        <p class="mb-4">
+                                            javafx로는 java application을 만든 경험이 있고, <br>
+                                            bootstrap과 jquery는 현재 홈페이지에서도 사용되고 있습니다.
+                                        </p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 3-->
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Banck End</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <div class="d-flex justify-content-center">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/backend/spring.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/backend/springboot.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/backend/thymeleaf.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/backend/jpa.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/backend/mybatis.jpeg" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/backend/spring_security.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/backend/rest_api.jpeg" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/backend/ajax.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/backend/gradle.png" alt="..." />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Portfolio Modal - Text-->
+                                        <p class="mb-4">
+                                            spring과 springboot의 환경에서 개발해 봤으며, gradle을 이용해서 빌드를 하였습니다.<br>
+                                            ORM은 mybatis와 JPA(Hibernate)를 사용하였고, login은 spring security를 이용해서 구현 하였습니다.<br>
+                                            rest api를 이용해서 데이터를 주고받았고, 필요시에는 ajax를 이용해서 비동기 호출도 사용하였습니다.
+                                        </p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 4-->
+        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Database</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <div class="d-flex justify-content-center">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/database/mysql.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/database/mssql.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/database/mongodb.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/database/flyway.png" alt="..." />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">
+                                        DB는 개발 과정때는 mysql을 주로 썼으며, mssql은 실제 데이터가 있는 DB로 사용되었습니다.<br>
+                                        mongodb는 개발중에 데이터가 많아서 나중을 위해 mongodb를 사용하였습니다.<br>
+                                        개발 중에 flyway를 사용해서, DB 관리(query를 이용해 table 생성, 데이터 crud)를 하였습니다.
+                                    </p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 5-->
+        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Cloud Service</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <div class="d-flex justify-content-center">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/cloud/naver_cloud.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/cloud/aws.png" alt="..." />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4 text-left">
+                                        다니던 회사가 민감정보를 관리하는 회사였기 때문에, <br>
+                                        ncloud의 민감정보를 저장할 수 있는 공간이 있어서 ncloud를 사용하였고,<br>
+                                        개발과정중에 aws는 test cloud로 사용했으며, 현재 사이트도 aws에 올라가 있습니다.<br>
+                                        사용된 aws 기술은 https를 적용하기 위해서 ssl을 발급 받았고, route 53을 이용하여 dns를 설정하고,<br>
+                                        loadblaancer를 이용해 해당 도메인이 443(https)포트로 접근 하기 위해 설정 하였습니다.
+                                    </p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio Modal 6-->
+        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" aria-labelledby="portfolioModal6" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Etc cowork tools</h2>
+                                    <!-- Icon Divider-->
+                                    <div class="divider-custom">
+                                        <div class="divider-custom-line"></div>
+                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                                        <div class="divider-custom-line"></div>
+                                    </div>
+                                    <!-- Portfolio Modal - Image-->
+                                    <div class="d-flex justify-content-center">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/etc/github.png" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/etc/slack.jpeg" alt="..." />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-4 mb-5">
+                                                <div class="portfolio-item mx-auto">
+                                                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                                                    </div>
+                                                    <img class="img-fluid mx-auto d-block" src="./img/assets/tech_stack/frameworks/etc/trello.png" alt="..." />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Portfolio Modal - Text-->
+                                    <p class="mb-4">
+                                        코드 관리는 github로 하였고, 프로젝트를 시작하기 전에 trllo를 이용해 to-do list를 작성하여 시작했습니다.<br>
+                                        slack으로는 외부&내부 프로젝트 소통 채널로 사용하였습니다.
+                                    </p>
+                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+                                        <i class="fas fa-xmark fa-fw"></i>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="./js/about/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        </div>
+        <div layout:fragment="script_area"></div>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
 </html>

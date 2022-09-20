@@ -7,6 +7,8 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="./css/main/base.css">
+ <!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="./img/assets/favicon.ico" />
 </head>
 <title>
 </title>
@@ -28,6 +30,9 @@
                 <a class="nav-link" th:href="@{'/chat'}">Chat</a>
               </li>
             </ul>
+            <div>
+                <span id="username-area" style="color: white;"></span>
+            </div>
         </div>
 	</nav>
     <button id="openBtn" class="open-button">Todo</button>
@@ -45,6 +50,7 @@
         <div></div>
     </div>
     <div layout:fragment="script_area"></div>
-    <script src="./js/main/todo.js"></script>
+    <script src="./js/base/todo.js"></script>
+    <script src="./js/base/login.js"></script>
 </body>
 </html>

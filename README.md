@@ -1,5 +1,7 @@
-1. chat
+1. mainpage
 
-2. notice board
+2. about
 
-3. ?
+3. board
+
+4. chat 

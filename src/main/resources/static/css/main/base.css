@@ -47,4 +47,8 @@
     margin-bottom:10px;
     opacity: 0.8;
 }
-  
+
+.email-section {
+    background-color: #343a40!important;
+    color: #fff;
+}

@@ -3,7 +3,7 @@
     xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{base}">
+	layout:decorate="~{base/base}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,38 +13,43 @@
 </head>
 <body>
     <div layout:fragment="page_content">
-        <div id="loginClock">
-            <div>
-                <form class="hidden" id="login-form">
-                    <input class="loginField" required maxlength="15" type="text" placeholder="What is your name?" />
-                    <input type="submit" value="Log In" />
-                </form>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <h1 id="greeting" class="hidden"></h1>
-                        <h1 id="greeting-name" class="hidden"></h1>
+        <mian role="main">
+            <div class="container">
+                <div id="loginClock">
+                    <div>
+                        <form class="hidden" id="login-form">
+                            <input class="loginField" required maxlength="15" type="text" placeholder="What is your name?" />
+                            <input type="submit" value="Log In" />
+                        </form>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <h1 id="greeting" class="hidden"></h1>
+                                <h1 id="greeting-name" class="hidden"></h1>
+                            </div>
+                        </div>
+                        <div class="float-right">
+                            <input id="edit-btn" class="btn btn-light hidden" type="submit" value=" Edit your name " />
+                        </div>
+                    </div>
+                    <h2 id="clock">00:00:00</h2>
                 </div>
-                <div class="float-right">
-                    <input id="edit-btn" class="btn btn-light hidden" type="submit" value=" Edit your name " />
+                <div id="quote">
+                    <span></span>
+                    <br>
+                    <span></span>
+                </div>
+                <div id="weather">
+                    <img>
+                    <span id="weatherFristSpan"></span>
+                    <br>
+                    <span></span>
                 </div>
             </div>
-            <h2 id="clock">00:00:00</h2>
-        </div>
-        <div id="quote">
-            <span></span>
-            <br>
-            <span></span>
-        </div>
-        <div id="weather">
-            <img>
-            <span id="weatherFristSpan"></span>
-            <br>
-            <span></span>
-        </div>
+        </mian>
     </div>
+    
     <div layout:fragment="script_area">
         <script src="./js/main/greetings.js"></script>
         <script src="./js/main/clock.js"></script>

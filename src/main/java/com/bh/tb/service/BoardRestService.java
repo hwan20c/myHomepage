@@ -2,23 +2,34 @@ package com.bh.tb.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.bh.tb.model.Board;
+import com.bh.tb.model.BoardSearchRequest;
+import com.bh.tb.util.PageableResponse;
+
 @Service
 public class BoardRestService {
-  // private final RestTemplate restTemplate;
+  private final RestTemplate restTemplate;
 
-  public String TB_API_SERVER = "";
+  public String BOARD_API_SERVER = "";
 
   @Autowired
-  public BoardRestService(
-    // RestTemplate restTemplate,
+  public BoardRestService(RestTemplate restTemplate,
                           @Value("{app.api.url}") String tbApiUrl,
                           @Value("{app.api.port}") String tbApiPort) {
-        // this.restTemplate = restTemplate;
-        this.TB_API_SERVER = tbApiUrl + ":" + tbApiPort + "boardurl";
-      }
+      this.restTemplate = restTemplate;
+      this.BOARD_API_SERVER = tbApiUrl + ":" + tbApiPort + "/api/boards";
+    }
 
+  public PageableResponse<Board> listwithPageable(BoardSearchRequest boardSearchRequest) {
+    ResponseEntity<PageableResponse<Board>> response
+     = restTemplate.exchange(BOARD_API_SERVER, HttpMethod.GET, null, new ParameterizedTypeReference<PageableResponse<Board>>() {});
+    return response.getBody();
+  }
 
 }

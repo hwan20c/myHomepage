@@ -20,8 +20,8 @@ public class BoardRestService {
 
   @Autowired
   public BoardRestService(RestTemplate restTemplate,
-                          @Value("{app.api.url}") String tbApiUrl,
-                          @Value("{app.api.port}") String tbApiPort) {
+                          @Value("${app.api.url}") String tbApiUrl,
+                          @Value("${app.api.port}") String tbApiPort) {
       this.restTemplate = restTemplate;
       this.BOARD_API_SERVER = tbApiUrl + ":" + tbApiPort + "/api/boards";
     }

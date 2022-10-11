@@ -4,41 +4,21 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="pagination(url)">
-  <div class="paginate" th:if="${notices.totalPages gt 0}">
+  <div class="paginate" th:if="${boards.totalPages gt 0}">
     <a th:href="@{{url}?page=0&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, url = ${url})}"
-       class="btn_paging first" th:classappend="${notices.first} ? 'disabled' : 'available'">처음</a>
-    <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${notices.number - 1}, url = ${url})}"
-       class="btn_paging prev" th:classappend="${notices.first} ? 'disabled' : 'available'">이전</a>
-    <th:block th:each="pageNumber : ${#numbers.sequence(1, notices.totalPages)}">
+       class="btn_paging first" th:classappend="${borads.first} ? 'disabled' : 'available'">처음</a>
+    <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${borads.number - 1}, url = ${url})}"
+       class="btn_paging prev" th:classappend="${boards.first} ? 'disabled' : 'available'">이전</a>
+    <th:block th:each="pageNumber : ${#numbers.sequence(1, boards.totalPages)}">
       <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${pageNumber - 1}, url = ${url})}"
-         th:class="${pageNumber eq notices.number + 1} ? 'active'" th:text="${pageNumber}"></a>
+         th:class="${pageNumber eq boards.number + 1} ? 'active'" th:text="${pageNumber}"></a>
     </th:block>
-    <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${notices.number + 1}, url = ${url})}"
-       class="btn_paging next" th:classappend="${notices.last} ? 'disabled' : 'available'">다음</a>
-    <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${notices.totalPages - 1}, url = ${url})}"
-       class="btn_paging last" th:classappend="${notices.last} ? 'disabled' : 'available'">마지막</a>
+    <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${boards.number + 1}, url = ${url})}"
+       class="btn_paging next" th:classappend="${boards.last} ? 'disabled' : 'available'">다음</a>
+    <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${boards.totalPages - 1}, url = ${url})}"
+       class="btn_paging last" th:classappend="${boards.last} ? 'disabled' : 'available'">마지막</a>
   </div>
-  <div th:unless="${notices.totalPages gt 0}" style="text-align: center">
-    등록된 게시글이 없습니다.
-  </div>
-</th:block>
-
-<th:block th:fragment="pagination_mobile(url)">
-  <div class="page_guide" th:if="${notices.totalPages gt 0}">
-    <a th:href="@{{url}?page=0&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, url = ${url})}"
-       class="btn_front btn_rec" th:classappend="${notices.first} ? 'disabled' : 'available'"></a>
-    <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${notices.number - 1}, url = ${url})}"
-       class="btn_prev btn_rec" th:classappend="${notices.first} ? 'disabled' : 'available'"></a>
-    <th:block th:each="pageNumber : ${#numbers.sequence(1, notices.totalPages)}">
-      <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${pageNumber - 1}, url = ${url})}"
-         class="btn_num" th:classappend="${pageNumber eq notices.number + 1} ? 'active'" th:text="${pageNumber}"></a>
-    </th:block>
-    <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${notices.number + 1}, url = ${url})}"
-       class="btn_next btn_rec" th:classappend="${notices.last} ? 'disabled' : 'available'"></a>
-    <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${notices.totalPages - 1}, url = ${url})}"
-       class="btn_back btn_rec" th:classappend="${notices.last} ? 'disabled' : 'available'"></a>
-  </div>
-  <div th:unless="${notices.totalPages gt 0}" style="text-align: center; margin-bottom: 7rem;">
+  <div th:unless="${boards.totalPages gt 0}" style="text-align: center">
     등록된 게시글이 없습니다.
   </div>
 </th:block>

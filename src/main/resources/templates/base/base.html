@@ -62,13 +62,14 @@
             </div>
         </div>
     </div>
-    <div layout:fragment="script_area"></div>
-    <script>
-      document.cookie = "safeCookie1=foo; SameSite=Lax"; 
+    <script type="text/javascript">
+			document.cookie = "safeCookie1=foo; SameSite=Lax"; 
       document.cookie = "safeCookie2=foo"; 
       document.cookie = "crossCookie=bar; SameSite=None; Secure";
-    </script>
+      const _ctx = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
+			</script>
     <script src="./js/base/todo.js"></script>
     <script src="./js/base/login.js"></script>
+		<div layout:fragment="script_area"></div>
 </body>
 </html>

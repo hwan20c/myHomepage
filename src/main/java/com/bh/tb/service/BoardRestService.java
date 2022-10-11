@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.bh.tb.model.Board;
-import com.bh.tb.model.BoardSearchRequest;
 import com.bh.tb.util.PageableResponse;
 
 @Service
@@ -26,9 +25,9 @@ public class BoardRestService {
       this.BOARD_API_SERVER = tbApiUrl + ":" + tbApiPort + "/api/boards";
     }
 
-  public PageableResponse<Board> listwithPageable(BoardSearchRequest boardSearchRequest) {
+  public PageableResponse<Board> listwithPageable(String search) {
     ResponseEntity<PageableResponse<Board>> response
-     = restTemplate.exchange(BOARD_API_SERVER, HttpMethod.GET, null, new ParameterizedTypeReference<PageableResponse<Board>>() {});
+     = restTemplate.exchange(BOARD_API_SERVER + search, HttpMethod.GET, null, new ParameterizedTypeReference<PageableResponse<Board>>() {});
     return response.getBody();
   }
 

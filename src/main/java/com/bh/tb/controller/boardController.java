@@ -26,8 +26,12 @@ public class BoardController {
 
   @GetMapping
 	public String mainpage(HttpServletRequest request, Model model, BoardSearchRequest boardSearchRequest) {
-		Page<Board> boards = boardRestService.listwithPageable(boardSearchRequest);
-		model.addAttribute("borads", boards);
+		String search = "?";
+		search += "searchKey=" + boardSearchRequest.getSearchKey();
+		search += "&searchValue=" + boardSearchRequest.getSearchValue();
+		search += "&page=" + boardSearchRequest.getPage();  
+		Page<Board> boards = boardRestService.listwithPageable(search);
+		model.addAttribute("boards", boards);
 		model.addAttribute("search", boardSearchRequest);
 		return "myBoard";
 	}

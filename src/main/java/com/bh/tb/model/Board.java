@@ -7,7 +7,7 @@ import lombok.Data;
 public class Board {
     private int id;
     private String title;
-    private String contents;
+    private String content;
     private String autor;
     private LocalDateTime createAt;
     private LocalDateTime updateAt;

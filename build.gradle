@@ -20,7 +20,7 @@ dependencies {
 	implementation 'org.springframework.data:spring-data-commons:2.7.3'
 
 	compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
 
 	compileOnly("org.springframework.boot:spring-boot-devtools")
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -29,6 +29,8 @@ dependencies {
 	implementation 'com.fasterxml.jackson.core:jackson-core:2.13.4'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4'
 
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.0.4.RELEASE'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 }
 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{base/base}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+    <title>로그인</title>
+	</head>
+  <body>
+	<div layout:fragment="page_content" style="height: 100vh">
+    <div id="contents" class="min_w">
+      <div class="login_box">
+        <form id="form-signIn" method ="POST">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+          <div>
+            <label for="loginId">ID</label>
+            <input id="loginId" type="text" name ="loginId" class="inp" placeholder="Enter ID" required autofocus/>
+          </div>
+          <div style="margin-bottom: 13px">
+            <label for="password" class="sr-only">Password</label>
+            <input id ="password" type="password" name ="password" class="inp" placeholder="Password" required/>
+          </div>
+          <input id="btn-Yes" class="btn" type="submit" value="로그인" style=""/>
+        </form>
+      </div>
+    </div>
+	</div>
+  <th:block layout:fragment="script_area"></th:block>
+  </body>
+</html>

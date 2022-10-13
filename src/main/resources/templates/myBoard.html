@@ -38,6 +38,10 @@
                             class="inp" style="width:150px;">
                     <button type="button" class="btn_search" id="btn-search">검색</button>
                 </span>
+                <span class="forms">
+                    <button sec:authorize="hasRole('ADMIN')" type="button" th:onclick="'location.href=\'' + @{/myBoard/create} + '\''"
+                            class="btn_admin">게시글 등록</button>
+                  </span>
             <div class="row">
                 <div class="col-md-4">
                     <ul class="thumbnail_list clearfix">

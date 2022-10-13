@@ -31,4 +31,10 @@ public class BoardRestService {
     return response.getBody();
   }
 
+  public Board detailPage(int id) {
+    ResponseEntity<Board> response 
+     = restTemplate.exchange(BOARD_API_SERVER + "/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<Board>() {});
+     return response.getBody();
+  }
+
 }

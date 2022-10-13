@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bh.tb.model.Board;
@@ -35,5 +36,13 @@ public class BoardController {
 		model.addAttribute("search", boardSearchRequest);
 		return "myBoard";
 	}
+
+	@GetMapping("/{id}")
+  public String detail(HttpServletRequest request, @PathVariable int id, Model model) {
+    Board board = boardRestService.detailPage(id);
+    board.increaseViewCount();
+    model.addAttribute("board", board);
+    return "myBoard/detail";
+  }
     
 }

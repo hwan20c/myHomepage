@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bh.tb.model.Board;
 import com.bh.tb.model.BoardSearchRequest;
@@ -34,15 +38,52 @@ public class BoardController {
 		Page<Board> boards = boardRestService.listwithPageable(search);
 		model.addAttribute("boards", boards);
 		model.addAttribute("search", boardSearchRequest);
-		return "myBoard";
+		return "board/myBoard";
 	}
 
 	@GetMapping("/{id}")
   public String detail(HttpServletRequest request, @PathVariable int id, Model model) {
-    Board board = boardRestService.detailPage(id);
+    Board board = boardRestService.get(id);
     board.increaseViewCount();
     model.addAttribute("board", board);
-    return "myBoard/detail";
+    return "board/detail";
   }
+
+	@GetMapping("/create")
+	public String create(HttpServletRequest request, Model model) {
+		model.addAttribute("board", new Board());
+		return "board/create";
+	}
+
+	@PostMapping
+	public String createBoard(Board board, Model model) {
+		Board response = boardRestService.create(board);
+		if (response != null) {
+			return "redirect:board/myBoard";
+		} else {
+			model.addAttribute("board", board);
+			return "board/create";
+		}
+	}
+
+	@GetMapping("/{boardId}/edit")
+	public String editBoard(@PathVariable int boardId, Model model) {
+		Board board = boardRestService.get(boardId);
+		model.addAttribute("board", board);
+		return "board/eidt";
+	}
+
+	@PutMapping
+	public String updateBoard(Board board) {
+		boardRestService.edit(board);
+		return "redirect:board/myBoard";
+	}
+
+	@DeleteMapping
+	@ResponseBody
+	public String deleteBoard(Board board) {
+		boardRestService.delete(board);
+		return "success";
+	}
     
 }

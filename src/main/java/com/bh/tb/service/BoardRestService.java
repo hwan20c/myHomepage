@@ -3,6 +3,7 @@ package com.bh.tb.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -31,10 +32,26 @@ public class BoardRestService {
     return response.getBody();
   }
 
-  public Board detailPage(int id) {
-    ResponseEntity<Board> response 
-     = restTemplate.exchange(BOARD_API_SERVER + "/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<Board>() {});
-     return response.getBody();
+  // public Board detailPage(int id) {
+  //   ResponseEntity<Board> response 
+  //    = restTemplate.exchange(BOARD_API_SERVER + "/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<Board>() {});
+  //    return response.getBody();
+  // }
+
+  public Board get(int id) {
+    return restTemplate.getForObject(BOARD_API_SERVER + "/" + id, Board.class);
+  }
+
+  public Board create(Board board) {
+    return restTemplate.postForObject(BOARD_API_SERVER, board, Board.class);
+  }
+
+  public void edit(Board board) {
+    restTemplate.put(BOARD_API_SERVER, board, Board.class);
+  }
+
+  public void delete(Board board) {
+    restTemplate.exchange(BOARD_API_SERVER, HttpMethod.DELETE, new HttpEntity<>(board), Board.class);
   }
 
 }

@@ -71,12 +71,12 @@
             <th:block th:insert="fragments/pagination :: pagination('/myboards')" />
         </div>
         </main>
-			</div>
+        </div>
     </body>
 		<th:block layout:fragment="script_area">
 			<script>
 				const searchUrl = _ctx + '/myBoard';
 			</script>
-			<script th:src="@{./js/board/board.js}"></script>
+			<script th:src="@{/js/board/board.js}"></script>
 		</th:block>
 </html>

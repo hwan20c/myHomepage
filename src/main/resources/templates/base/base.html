@@ -8,7 +8,7 @@
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}" />
-<link rel="stylesheet" href="./css/main/base.css">
+<link rel="stylesheet" th:href="@{/css/main/base.css}"/>
  <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="./img/assets/favicon.ico" />
 </head>
@@ -52,7 +52,7 @@
         </div>
     </div>
     <div layout:fragment="page_content"></div>
-    <dic class="footer" id="base_footer">
+    <div class="footer" id="base_footer">
         <div class="email-section py-3 text-left text-white">
             <div class="row">
                 <div class="col-6 pl-5">
@@ -70,8 +70,8 @@
       document.cookie = "crossCookie=bar; SameSite=None; Secure";
       const _ctx = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
 			</script>
-    <script src="./js/base/todo.js"></script>
-    <script src="./js/base/login.js"></script>
-		<div layout:fragment="script_area"></div>
+    <script th:src="@{/js/base/todo.js}"></script>
+    <script th:src="@{/js/base/login.js}"></script>
+	<div layout:fragment="script_area"></div>
 </body>
 </html>

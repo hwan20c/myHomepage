@@ -5,13 +5,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import com.bh.tb.service.UserDetailServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -20,17 +17,17 @@ public class WebSecurityConfig {
   /**
 	 * description : 유저 인증정보를 설정 할 수 있다. jdbc 인증정보 연결  
 	 */
-	@Bean
-	public UserDetailsService userDetailsService() {
-		return new UserDetailServiceImpl();
-	}
+	// @Bean
+	// public UserDetailsService userDetailsService() {
+	// 	return new UserDetailServiceImpl();
+	// }
 	
 	/**
 	 * description : static file 같은 인증이 필요없는 리소스를 이곳에서 설정한다.
 	 */
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
-		return (web) -> web.ignoring().antMatchers("/css", "/js");
+		return (web) -> web.ignoring().antMatchers("/css/**", "/js/**");
 	}
 	
 	/**
@@ -41,7 +38,7 @@ public class WebSecurityConfig {
 		http
 			.authorizeRequests().antMatchers("/files/**").permitAll()
 			.antMatchers("/").permitAll()
-			.antMatchers("/myBoard/create").hasAnyRole("ADMIN")
+			// .antMatchers("/myBoard/create").hasAnyRole("ADMIN")
 			.antMatchers("/myBoard/delete").hasAnyRole("ADMIN")
 			.anyRequest().permitAll()
 			.and()

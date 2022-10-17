@@ -8,6 +8,7 @@ import com.bh.tb.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
 
-  User findByLoginId(String name);
+  // Optional<User> findByLoginId(String name);
+ User findByLoginId(String name);
   
 }

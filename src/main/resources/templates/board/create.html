@@ -10,11 +10,156 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+        <link rel="icon" th:href="@{/docs/4.0/assets/img/favicons/favicon.ico}">
         <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
-        <title>Board</title>
+				<link rel="stylesheet" th:href="@{/ext/summernote/summernote-lite.css}">
+        <title>Board-create</title>
     </head>
     <body>
-      hi
-    </body>
+			<div layout:fragment="page_content" style="height: 100vh">
+				<div id="contents" class="min_w"> <!-- @게시판 Width -->
+					<form th:action="@{/news/{menu}(menu = ${menu})}" method="POST" th:object="${board}" id="board-form" enctype="multipart/form-data">
+						<input type="hidden" th:field="*{id}"/>
+						<input type="hidden" name="type" th:value="${#strings.equals(menu, 'board') ? 0 : 1}"/>
+			
+						<div class="tbl row">
+							<table>
+								<caption>문의하기</caption>
+								<colgroup>
+									<col style="width:15%">
+									<col>
+								</colgroup>
+								<tbody>
+								<tr>
+									<th scope="row">
+										<label for="title" class="label">제목</label>
+									</th>
+									<td>
+										<input type="text" id="title" name="title" class="inp" th:field="*{title}" placeholder="제목을 입력해주세요." required>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">
+										<label for="editor" class="label">내용</label>
+									</th>
+									<td>
+										<textarea id="editor" name="content" cols="30" rows="10" class="textarea" th:field="*{content}"></textarea>
+									</td>
+								</tr>
+								<!-- <tr>
+									<th scope="row">
+										<p class="label">파일 첨부</p>
+									</th>
+									<td>
+										<label>
+											<input type="text" class="inp" disabled style="width:500px" id="upload-name" th:value="${board.getFilesStringValue()}">
+										</label>
+										<label for="upload" class="btn_md">파일찾기</label>
+										<input type="file" id="upload" class="hidden" name="file" multiple/>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">
+										<p class="label">대표 사진</p>
+									</th>
+									<td>
+										<label>
+											<input type="text" class="inp" disabled style="width:500px" id="upload-image-name" th:value="${board.getViewImageName()}">
+										</label>
+										<label for="upload-image" class="btn_md" >파일찾기</label>
+										<input type="file" id="upload-image" class="hidden" name="imageFile" />
+									</td>
+								</tr> -->
+								</tbody>
+							</table>
+						</div>
+			
+						<div class="btn_wrap al_c">
+							<input type="submit" class="btn btn_pointer" th:value="${board.id != 0 ? '수정' : '등록'}" />
+							<a th:href="@{/myBoard}" class="btn ghost">취소</a>
+						</div>
+					</form>
+					</div>
+				</main>
+					
+			</div>
+		
+		<div layout:fragment="script_area">
+      <script th:src="@{/ext/summernote/summernote-lite.js}"></script>
+      <script th:src="@{/ext/summernote/lang/summernote-ko-KR.js}"></script>
+      <script>
+        $('#editor').summernote({
+          toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['insert', ['link', 'picture']],
+            ['height', ['height']],
+          ],
+          height: 500,
+          minHeight: null,
+          maxHeight: null,
+          focus: true,
+          lang: 'ko-KR',
+          placeholder: '게시글의 본문을 적는 곳입니다. 내용을 입력해주세요.',
+          callbacks: {
+            onImageUpload: function(files) {
+              uploadSummernoteImageFile(files[0], this);
+            },
+            // 기본값 사용시 base64 인코딩된 이미지 파일과 url 기반 업로드 이미지 파일 두개가 들어가는 버그 해결위한 함수
+            onPaste: function(e) {
+              const clipboardData = e.originalEvent.clipboardData;
+              if(clipboardData && clipboardData.items && clipboardData.item.length) {
+                const item = clipboardData.items[0];
+                if(item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+                  e.preventDefault();
+                }
+              }
+            }
+          }
+        });
+    
+        function uploadSummernoteImageFile(file, editor) {
+          const formData = new FormData();
+          formData.append('file', file);
+          $.ajax({
+            url: _ctx + 'files',
+            type: 'POST',
+            headers: {
+              'X-CSRF-TOKEN': token
+            },
+            contentType: false,
+            processData: false,
+            enctype: 'multipart/form-data',
+            data: formData
+          }).done(function(response) {
+            // console.log(response);
+            $(editor).summernote('insertImage', response.url);
+          }).fail(function(error) {
+            console.log('[ Error Response ]\n' + error)
+          });
+        }
+    
+        $('#upload, #upload-image').on('change', function() {
+          const resultFiles = [];
+          const files = $(this)[0].files;
+          Array.prototype.forEach.call(files, (element) => {
+            resultFiles.push(element.name);
+          });
+          const resultText = resultFiles.toString().replaceAll(',' ,'  //  ');
+          $('#' + $(this).attr('id') + '-name').val(resultText);
+        });
+    
+        $('form').submit(function(e) {
+          const messageLength = CKEDITOR.instances['editor'].getData().replace(/<[^>]*>/gi, '').length;
+          if(!messageLength) {
+            alert('글을 입력해주세요');
+            e.preventDefault();
+          }
+        });
+      </script>
+	</div>
+	</body>
 </html>

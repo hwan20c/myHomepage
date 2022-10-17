@@ -70,7 +70,7 @@ public class BoardController {
 	public String editBoard(@PathVariable int boardId, Model model) {
 		Board board = boardRestService.get(boardId);
 		model.addAttribute("board", board);
-		return "board/eidt";
+		return "board/edit";
 	}
 
 	@PutMapping

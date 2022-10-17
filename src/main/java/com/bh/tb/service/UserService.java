@@ -1,5 +1,7 @@
 package com.bh.tb.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +12,14 @@ import com.bh.tb.repository.UserRepository;
 public class UserService {
   @Autowired
   private UserRepository userRepository;
-  
+
   public User findUserByLoginId(String loginId) {
     return userRepository.findByLoginId(loginId);
   }
+  
+  // public Optional<User> findUserByLoginId(String loginId) {
+  //   return userRepository.findByLoginId(loginId);
+  // }
 
   public User findById(int id) {
 		return userRepository.findById(id).get();

@@ -5,73 +5,74 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{base/base}">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-        <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
-        <title>Board</title>
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			<meta name="description" content="">
+			<meta name="author" content="">
+			<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+			<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+			<link rel="stylesheet" th:href="@{/css/board/style.css}"/>
+			<title>Board</title>
     </head>
     <body>
-        <div layout:fragment="page_content" style="height: 100vh">
-        <main role="main">
-        <section class="jumbotron text-center">
-            <div class="container">
-            <h1 class="jumbotron-heading">Noitce Board</h1>
-            <p class="lead text-muted">IT 여러가지 내용을 포스팅하는 곳 입니다.</p>
-            </div>
-        </section>
+			<div layout:fragment="page_content" style="height: 100vh">
+				<main role="main">
+					<section class="jumbotron text-center">
+						<div class="container">
+							<h1 class="jumbotron-heading">Noitce Board</h1>
+							<p class="lead text-muted">IT 여러가지 내용을 포스팅하는 곳 입니다.</p>
+						</div>
+					</section>
 
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <span class="forms">
-                    <select title="검색어 선택" class="select" id="searchKey" th:field="*{search.searchKey}">
-                        <option value="">전체</option>
-                        <option value="title">제목</option>
-                        <option value="content">내용</option>
-                    </select>
-                    </span>
-                    <span class="forms search_inp">
-                    <input type="text" title="검색 직접입력" id="searchValue" th:field="*{search.searchValue}" placeholder="검색어를 입력하세요"
-                            class="inp" style="width:150px;">
-                    <button type="button" class="btn_search" id="btn-search">검색</button>
-                </span>
-                <span class="forms">
-                    <button sec:authorize="hasRole('ADMIN')" type="button" th:onclick="'location.href=\'' + @{/myBoard/create} + '\''"
-                            class="btn_admin">게시글 등록</button>
-                  </span>
-            <div class="row">
-                <div class="col-md-4">
-                    <ul class="thumbnail_list clearfix">
-                        <li th:each="board : ${boards.content}">
-                          <a th:href="@{/news/pressReleases/{id}(id = ${board.id})}">
-                            <img th:src="@{${board.imagePath != null ? board.imagePath : '/images/pc/main_img_news1.jpg'}}" alt="" class="photo">
-                            <p class="board_title" th:text="${board.title}">IT관련<br>ITIT</p>
-                            <p>
-                              <span th:text="${#temporals.format(board.createdAt, 'yyyy-MM-dd')}">2021-12-10</span>&ensp;
-                              <span th:text="'조회수 ' + ${board.viewCount}">0</span>
-                            </p>
-                          </a>
-                        </li>
-                      </ul>
-                <div class="card mb-4 box-shadow">
-                    <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-                    <div class="card-body">
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted">9 mins</small>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-            <th:block th:insert="fragments/pagination :: pagination('/myboards')" />
-        </div>
-        </main>
-        </div>
+					<div class="album py-5 bg-light">
+						<div class="container">
+							<span class="forms">
+								<select title="검색어 선택" class="select" id="searchKey" th:field="*{search.searchKey}">
+									<option value="">전체</option>
+									<option value="title">제목</option>
+									<option value="content">내용</option>
+								</select>
+							</span>
+							<span class="forms search_inp">
+								<input type="text" title="검색 직접입력" id="searchValue" th:field="*{search.searchValue}" placeholder="검색어를 입력하세요"
+												class="inp" style="width:150px;">
+								<button type="button" class="btn_search" id="btn-search">검색</button>
+							</span>
+							<span class="forms">
+								<button sec:authorize="hasRole('ADMIN')" type="button" th:onclick="'location.href=\'' + @{/myBoard/create} + '\''"
+														class="btn_admin">게시글 등록</button>
+							</span>
+							<div class="row">
+								<div class="col-md-4">
+									<ul class="thumbnail_list clearfix">
+										<li th:each="board : ${boards.content}">
+											<a th:href="@{/myboard/{id}(id = ${board.id})}">
+												<img th:src="@{${board.imagePath != null ? board.imagePath : './img/assets/tech_stack/frameworks/language/js.png'}}" alt="" class="photo">
+												<p class="board_title" th:text="${board.title}">IT관련<br>ITIT</p>
+												<p>
+													<span th:text="${#temporals.format(board.createdAt, 'yyyy-MM-dd')}">2021-12-10</span>&ensp;
+													<span th:text="'조회수 ' + ${board.viewCount}">0</span>
+												</p>
+											</a>
+										</li>
+									</ul>
+									<div class="card mb-4 box-shadow">
+											<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+											<div class="card-body">
+												<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+												<div class="d-flex justify-content-between align-items-center">
+														<small class="text-muted">9 mins</small>
+												</div>
+											</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<th:block th:insert="fragments/pagination :: pagination('/myboards')" />
+					</div>
+				</div>
+			</main>
     </body>
 		<th:block layout:fragment="script_area">
 			<script>

@@ -15,16 +15,15 @@
 				<link rel="stylesheet" th:href="@{/ext/summernote/summernote-lite.css}">
         <title>Board-create</title>
     </head>
-    <body>
+    <body style="overflow-x: hidden">
 			<div layout:fragment="page_content" style="height: 100vh">
 				<div id="contents" class="min_w"> <!-- @게시판 Width -->
-					<form th:action="@{/news/{menu}(menu = ${menu})}" method="POST" th:object="${board}" id="board-form" enctype="multipart/form-data">
+					<form th:action="@{/myBoard}" method="POST" th:object="${board}" id="board-form" enctype="multipart/form-data">
 						<input type="hidden" th:field="*{id}"/>
 						<input type="hidden" name="type" th:value="${#strings.equals(menu, 'board') ? 0 : 1}"/>
 			
-						<div class="tbl row">
+						<div class="tbl">
 							<table>
-								<caption>문의하기</caption>
 								<colgroup>
 									<col style="width:15%">
 									<col>
@@ -73,10 +72,11 @@
 								</tbody>
 							</table>
 						</div>
-			
-						<div class="btn_wrap al_c">
-							<input type="submit" class="btn btn_pointer" th:value="${board.id != 0 ? '수정' : '등록'}" />
-							<a th:href="@{/myBoard}" class="btn ghost">취소</a>
+						<div class="row">
+							<div class="btn-group-toggle col-6 text-right">
+								<input type="submit" class="btn btn-primary" th:value="${board.id != 0 ? '수정' : '등록'}" />
+								<a th:href="@{/myBoard}" class="btn btn-danger">취소</a>
+							</div>
 						</div>
 					</form>
 					</div>

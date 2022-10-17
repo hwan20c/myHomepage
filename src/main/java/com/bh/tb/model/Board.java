@@ -9,8 +9,8 @@ public class Board {
     private String title;
     private String content;
     private String autor;
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private int viewCount;
     private String imagePath;
 

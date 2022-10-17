@@ -59,7 +59,7 @@ public class BoardController {
 	public String createBoard(Board board, Model model) {
 		Board response = boardRestService.create(board);
 		if (response != null) {
-			return "redirect:board/myBoard";
+			return "redirect:/myBoard";
 		} else {
 			model.addAttribute("board", board);
 			return "board/create";

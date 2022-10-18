@@ -20,3 +20,4 @@
 .thumbnail_list p:last-of-type{color:#666;}
 
 .clearfix:after {content:''; display:block; clear:both;} /* 플로팅 해제 */
+ol,ul {list-style:none;}

@@ -16,17 +16,19 @@
 			<title>Board</title>
     </head>
     <body>
-			<div layout:fragment="page_content" style="height: 100vh">
+			<div layout:fragment="page_content">
 				<main role="main">
-					<section class="jumbotron text-center">
-						<div class="container">
-							<h1 class="jumbotron-heading">Noitce Board</h1>
-							<p class="lead text-muted">IT 여러가지 내용을 포스팅하는 곳 입니다.</p>
-						</div>
-					</section>
+					<div class="title_wrap">
+						<section class="jumbotron text-center">
+							<div class="container">
+								<h1 class="jumbotron-heading">Noitce Board</h1>
+								<p class="lead text-muted">IT 여러가지 내용을 포스팅하는 곳 입니다.</p>
+							</div>
+						</section>
+					</div>
 
-					<div class="album py-5 bg-light">
-						<div class="container">
+					<div class="py-5">
+						<div class="search_wrap text-right">
 							<span class="forms">
 								<select title="검색어 선택" class="select" id="searchKey" th:field="*{search.searchKey}">
 									<option value="">전체</option>
@@ -43,36 +45,25 @@
 								<button sec:authorize="hasRole('ADMIN')" type="button" th:onclick="'location.href=\'' + @{/myBoard/create} + '\''"
 														class="btn_admin">게시글 등록</button>
 							</span>
-							<div class="row">
-								<div class="col-md-4">
-									<ul class="thumbnail_list clearfix">
-										<li th:each="board : ${boards.content}">
-											<a th:href="@{/myboard/{id}(id = ${board.id})}">
-												<img th:src="@{${board.imagePath != null ? board.imagePath : './img/assets/tech_stack/frameworks/language/js.png'}}" alt="" class="photo">
-												<p class="board_title" th:text="${board.title}">IT관련<br>ITIT</p>
-												<p>
-													<span th:text="${#temporals.format(board.createdAt, 'yyyy-MM-dd')}">2021-12-10</span>&ensp;
-													<span th:text="'조회수 ' + ${board.viewCount}">0</span>
-												</p>
-											</a>
-										</li>
-									</ul>
-									<div class="card mb-4 box-shadow">
-											<img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
-											<div class="card-body">
-												<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-												<div class="d-flex justify-content-between align-items-center">
-														<small class="text-muted">9 mins</small>
-												</div>
-											</div>
-									</div>
-								</div>
-							</div>
+						</div>
+						<div class="thumbnail_wrap">
+							<ul class="thumbnail_list clearfix">
+								<li th:each="board : ${boards.content}">
+									<a th:href="@{/myboard/{id}(id = ${board.id})}">
+										<img th:src="@{${board.imagePath != null ? board.imagePath : './img/assets/tech_stack/frameworks/language/js.png'}}" alt="" class="photo">
+										<p class="board_title" th:text="${board.title}">IT관련<br>ITIT</p>
+										<p>
+											<span th:text="${#temporals.format(board.createdAt, 'yyyy-MM-dd')}">2021-12-10</span>&ensp;
+											<span th:text="'조회수 ' + ${board.viewCount}">0</span>
+										</p>
+									</a>
+								</li>
+							</ul>
 						</div>
 						<th:block th:insert="fragments/pagination :: pagination('/myboards')" />
 					</div>
-				</div>
-			</main>
+				</main>
+			</div>
     </body>
 		<th:block layout:fragment="script_area">
 			<script>

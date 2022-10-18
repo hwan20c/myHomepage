@@ -44,7 +44,6 @@ public class BoardController {
 	@GetMapping("/{id}")
   public String detail(HttpServletRequest request, @PathVariable int id, Model model) {
     Board board = boardRestService.get(id);
-    board.increaseViewCount();
     model.addAttribute("board", board);
     return "board/detail";
   }

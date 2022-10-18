@@ -22,11 +22,4 @@
 .clearfix:after {content:''; display:block; clear:both;} /* 플로팅 해제 */
 ol,ul {list-style:none;}
 
-/* html,
-body {
-  height: 100%
-} */
-
-
-/*#contents {width: 1224px; padding:140px 0 200px; margin: 0 auto;}
-#contents.min_w {width: 1200px;} /* 게시판 Width */
+.title_wrap section {background-color: #cfcfcf}

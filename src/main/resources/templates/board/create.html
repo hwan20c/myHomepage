@@ -13,77 +13,88 @@
         <link rel="icon" th:href="@{/docs/4.0/assets/img/favicons/favicon.ico}">
         <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 				<link rel="stylesheet" th:href="@{/ext/summernote/summernote-lite.css}">
+        <link rel="stylesheet" th:href="@{/css/board/detialstyle.css}"/>
         <title>Board-create</title>
     </head>
     <body style="overflow-x: hidden">
-			<div layout:fragment="page_content" style="height: 100vh">
-				<div id="contents" class="min_w"> <!-- @게시판 Width -->
-					<form th:action="@{/myBoard}" method="POST" th:object="${board}" id="board-form" enctype="multipart/form-data">
-						<input type="hidden" th:field="*{id}"/>
-						<input type="hidden" name="type" th:value="${#strings.equals(menu, 'board') ? 0 : 1}"/>
-			
-						<div class="tbl">
-							<table>
-								<colgroup>
-									<col style="width:15%">
-									<col>
-								</colgroup>
-								<tbody>
-								<tr>
-									<th scope="row">
-										<label for="title" class="label">제목</label>
-									</th>
-									<td>
-										<input type="text" id="title" name="title" class="inp" th:field="*{title}" placeholder="제목을 입력해주세요." required>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row">
-										<label for="editor" class="label">내용</label>
-									</th>
-									<td>
-										<textarea id="editor" name="content" cols="30" rows="10" class="textarea" th:field="*{content}"></textarea>
-									</td>
-								</tr>
-								<!-- <tr>
-									<th scope="row">
-										<p class="label">파일 첨부</p>
-									</th>
-									<td>
-										<label>
-											<input type="text" class="inp" disabled style="width:500px" id="upload-name" th:value="${board.getFilesStringValue()}">
-										</label>
-										<label for="upload" class="btn_md">파일찾기</label>
-										<input type="file" id="upload" class="hidden" name="file" multiple/>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row">
-										<p class="label">대표 사진</p>
-									</th>
-									<td>
-										<label>
-											<input type="text" class="inp" disabled style="width:500px" id="upload-image-name" th:value="${board.getViewImageName()}">
-										</label>
-										<label for="upload-image" class="btn_md" >파일찾기</label>
-										<input type="file" id="upload-image" class="hidden" name="imageFile" />
-									</td>
-								</tr> -->
-								</tbody>
-							</table>
-						</div>
-						<div class="row">
-							<div class="btn-group-toggle col-6 text-right">
-								<input type="submit" class="btn btn-primary" th:value="${board.id != 0 ? '수정' : '등록'}" />
-								<a th:href="@{/myBoard}" class="btn btn-danger">취소</a>
-							</div>
-						</div>
-					</form>
+			<div layout:fragment="page_content">
+
+        <div class="title_wrap">
+          <section class="jumbotron text-center">
+            <div class="container">
+              <h1 class="jumbotron-heading">Noitce Board</h1>
+              <p class="lead text-muted">IT 여러가지 내용을 포스팅하는 곳 입니다.</p>
+            </div>
+          </section>
+        </div>
+
+        <div class="container mb-4">
+				  <div id="contents" class="min_w"> <!-- @게시판 Width -->
+            <form th:action="@{/myBoard}" method="POST" th:object="${board}" id="board-form" enctype="multipart/form-data">
+              <input type="hidden" th:field="*{id}"/>
+              <input type="hidden" name="type" th:value="${#strings.equals(menu, 'board') ? 0 : 1}"/>
+        
+              <div class="tbl mb-2" >
+                <table>
+                  <colgroup>
+                    <col style="width:15%">
+                    <col>
+                  </colgroup>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label for="title" class="label">제목</label>
+                      </th>
+                      <td>
+                        <input type="text" id="title" name="title" class="inp" th:field="*{title}" placeholder="제목을 입력해주세요." required>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <label for="editor" class="label">내용</label>
+                      </th>
+                      <td>
+                        <textarea id="editor" name="content" cols="30" rows="10" class="textarea" th:field="*{content}"></textarea>
+                      </td>
+                    </tr>
+                    <!-- <tr>
+                      <th scope="row">
+                        <p class="label">파일 첨부</p>
+                      </th>
+                      <td>
+                        <label>
+                          <input type="text" class="inp" disabled style="width:500px" id="upload-name" th:value="${board.getFilesStringValue()}">
+                        </label>
+                        <label for="upload" class="btn_md">파일찾기</label>
+                        <input type="file" id="upload" class="hidden" name="file" multiple/>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">
+                        <p class="label">대표 사진</p>
+                      </th>
+                      <td>
+                        <label>
+                          <input type="text" class="inp" disabled style="width:500px" id="upload-image-name" th:value="${board.getViewImageName()}">
+                        </label>
+                        <label for="upload-image" class="btn_md" >파일찾기</label>
+                        <input type="file" id="upload-image" class="hidden" name="imageFile" />
+                      </td>
+                    </tr> -->
+                  </tbody>
+                </table>
+              </div>
+              <div class="row">
+                <div class="btn-group-toggle col-6 text-right">
+                  <input type="submit" class="btn btn-primary" th:value="${board.id != 0 ? '수정' : '등록'}" />
+                  <a th:href="@{/myBoard}" class="btn btn-danger">취소</a>
+                </div>
+              </div>
+            </form>
 					</div>
-				</main>
+        </div>
 					
 			</div>
-		
 		<div layout:fragment="script_area">
       <script th:src="@{/ext/summernote/summernote-lite.js}"></script>
       <script th:src="@{/ext/summernote/lang/summernote-ko-KR.js}"></script>

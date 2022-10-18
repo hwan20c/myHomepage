@@ -13,8 +13,4 @@ public class Board {
     private LocalDateTime updatedAt;
     private int viewCount;
     private String imagePath;
-
-    public void increaseViewCount() {
-        this.viewCount++;
-    }
 }

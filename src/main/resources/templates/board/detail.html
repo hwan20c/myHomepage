@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{base/base}">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+		<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+    <link rel="stylesheet" th:href="@{/css/board/detialstyle.css}"/>
+		<title>Board</title>
+	</head>
+	<body>
+    <div layout:fragment="page_content" id="boardLayout" class="h-100">
+      <main id="main">
+
+          <div class="title_wrap">
+            <section class="jumbotron text-center">
+              <div class="container">
+                <h1 class="jumbotron-heading">Noitce Board</h1>
+                <p class="lead text-muted">IT 여러가지 내용을 포스팅하는 곳 입니다.</p>
+              </div>
+            </section>
+          </div>
+
+          <div class="container">
+
+            <div class="title_area">
+              <div class="row">
+                <div class="col">
+                  <h1 class="title display-4" th:text="${board.title}">제목</h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col text-right">
+                  <span th:text="${#temporals.format(board.createdAt, 'yyyy-MM-dd HH:mm:ss')}">2021-10-20</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col text-right">
+                  <span th:text="'조회수 : ' + ${board.viewCount}">조회수</span>
+                </div>
+              </div>
+            </div>
+
+            <hr class="straight_line">
+
+            <!-- <div class="brd_td">
+              <th:block th:each="file : ${board.files}">
+                <a th:href="@{/files/{id}(id = ${file.id})}" class="file_down" role="button" th:data-path="${file.path}" th:data-name="${file.name}" th:text="${file.name}">'중소기업 4차산업혁명위원회' 위원장 위촉자료.xlsx</a><br>
+              </th:block>
+            </div> -->
+            <div th:utext="${board.content}">
+              내용
+            </div>
+
+            <div class="btn_area">
+              <div class="row">
+                <div class="col text-right">
+                  <button sec:authorize="hasRole('ADMIN')" th:if="${board.id != 0}" class="btn danger" id="btn-remove" th:value="${board.id}">삭제</button>
+                  <a sec:authorize="hasRole('ADMIN')" th:href="@{/myBoard/create?id={id}(menu = ${menu}, id=${board.id})}" class="btn">수정</a>
+                  <a th:href="@{/myBoard}" class="btn ghost" id="btn-back">목록</a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+      </main>
+    </div>
+  </body>
+</html>

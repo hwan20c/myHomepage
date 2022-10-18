@@ -4,7 +4,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="pagination(url)">
-  <div class="paginate" th:if="${boards.totalPages gt 0}">
+  <div class="paginate mb-4" th:if="${boards.totalPages gt 0}">
     <a th:href="@{{url}?page=0&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, url = ${url})}"
        class="btn_paging first" th:classappend="${boards.first} ? 'disabled' : 'available'">처음</a>
     <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${boards.number - 1}, url = ${url})}"
@@ -14,9 +14,9 @@
          th:class="${pageNumber eq boards.number + 1} ? 'active'" th:text="${pageNumber}"></a>
     </th:block>
     <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${boards.number + 1}, url = ${url})}"
-       class="btn_paging next" th:classappend="${boards.last} ? 'disabled' : 'available'">다음</a>
+       class="btn_paging next" th:classappend="${boards.last} ? 'disabled' : 'available'"></a>
     <a th:href="@{{url}?page={page}&searchKey={searchKey}&searchValue={searchValue}(searchKey = ${search.searchKey}, searchValue = ${search.searchValue}, page = ${boards.totalPages - 1}, url = ${url})}"
-       class="btn_paging last" th:classappend="${boards.last} ? 'disabled' : 'available'">마지막</a>
+       class="btn_paging last" th:classappend="${boards.last} ? 'disabled' : 'available'"></a>
   </div>
   <div th:unless="${boards.totalPages gt 0}" style="text-align: center">
     등록된 게시글이 없습니다.

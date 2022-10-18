@@ -4,31 +4,33 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{base/base}">
-    <head>
-			<meta charset="UTF-8">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-			<meta name="description" content="">
-			<meta name="author" content="">
-			<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-			<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
-			<link rel="stylesheet" th:href="@{/css/board/style.css}"/>
-			<title>Board</title>
-    </head>
-    <body>
-			<div layout:fragment="page_content">
-				<main role="main">
-					<div class="title_wrap">
-						<section class="jumbotron text-center">
-							<div class="container">
-								<h1 class="jumbotron-heading">Noitce Board</h1>
-								<p class="lead text-muted">IT 여러가지 내용을 포스팅하는 곳 입니다.</p>
-							</div>
-						</section>
-					</div>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+		<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+		<link rel="stylesheet" th:href="@{/css/board/style.css}"/>
+		<title>Board</title>
+	</head>
+	<body>
+		<div layout:fragment="page_content" id="boardLayout">
+			<input type="hidden" id="boardsTotal" th:value="${boards.totalPages}"></span>
+			<main role="main" class="h-100">
+				<div class="title_wrap">
+					<section class="jumbotron text-center">
+						<div class="container">
+							<h1 class="jumbotron-heading">Noitce Board</h1>
+							<p class="lead text-muted">IT 여러가지 내용을 포스팅하는 곳 입니다.</p>
+						</div>
+					</section>
+				</div>
 
-					<div class="py-5">
-						<div class="search_wrap text-right">
+				<div class="container">
+					<div class="row pb-5 text-right">
+						<div class="search_wrap">
 							<span class="forms">
 								<select title="검색어 선택" class="select" id="searchKey" th:field="*{search.searchKey}">
 									<option value="">전체</option>
@@ -46,6 +48,11 @@
 														class="btn_admin">게시글 등록</button>
 							</span>
 						</div>
+					</div>
+				</div>
+
+				<div class="container">
+					<div class="row">
 						<div class="thumbnail_wrap">
 							<ul class="thumbnail_list clearfix">
 								<li th:each="board : ${boards.content}">
@@ -60,15 +67,17 @@
 								</li>
 							</ul>
 						</div>
-						<th:block th:insert="fragments/pagination :: pagination('/myboards')" />
 					</div>
-				</main>
-			</div>
-    </body>
-		<th:block layout:fragment="script_area">
-			<script>
-				const searchUrl = _ctx + '/myBoard';
-			</script>
-			<script th:src="@{/js/board/board.js}"></script>
-		</th:block>
+				</div>				
+						
+				<th:block th:insert="fragments/pagination :: pagination('/myBoard')" />
+			</main>
+		</div>
+	</body>
+	<th:block layout:fragment="script_area">
+		<script>
+			const searchUrl = _ctx + '/myBoard';
+		</script>
+		<script th:src="@{/js/board/board.js}"></script>
+	</th:block>
 </html>

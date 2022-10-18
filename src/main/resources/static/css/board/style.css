@@ -14,10 +14,19 @@
 /*.thumbnail_list {line-height:36px; margin-bottom:80px;}*/
 .thumbnail_list {line-height:36px;}
 .thumbnail_list li {float:left; margin-right: 40px; margin-bottom: 40px;}
-.thumbnail_list .photo {width:360px; height:250px; margin-bottom:40px; background:#eaeaea; border: 1px solid #e6e6e6;}
+.thumbnail_list .photo {margin-bottom:40px; background:#eaeaea; border: 1px solid #e6e6e6;}
 /*.thumbnail_list li+li {margin-left:60px;}*/
 .thumbnail_list .board_title {font-size:13px; font-weight: bold}
 .thumbnail_list p:last-of-type{color:#666;}
 
 .clearfix:after {content:''; display:block; clear:both;} /* 플로팅 해제 */
 ol,ul {list-style:none;}
+
+/* html,
+body {
+  height: 100%
+} */
+
+
+/*#contents {width: 1224px; padding:140px 0 200px; margin: 0 auto;}
+#contents.min_w {width: 1200px;} /* 게시판 Width */

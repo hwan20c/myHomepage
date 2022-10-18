@@ -2,7 +2,8 @@
 <html html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+		class="h-100">
 <head>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -15,63 +16,65 @@
 <title>
 </title>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div>
-			<a class="navbar-brand" th:href="@{'/'}">Home</a>
+<body class="h-100">
+	<div class="h-100">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div>
+				<a class="navbar-brand" th:href="@{'/'}">Home</a>
+			</div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{'/about'}">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{'/myBoard'}">myBoard</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{'/chat'}">Chat</a>
+					</li>
+				</ul>
+				<div>
+						<span id="username-area" style="color: white;"></span>
+				</div>
+			</div>
+		</nav>
+		<button id="openBtn" class="open-button">Todo</button>
+		<div id="todoPopup">
+			<h2>todo-list</h1>
+			<form id="todo-form">
+					<input type="text" placeholder="Write a To Do and Press Enter" required />
+			</form>
+			<ul id="todo-list"></ul>
+			<div class="text-right">
+				<button id="closeBtn" type="button" class="btn btn-outline-secondary">Close</button>
+			</div>
 		</div>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{'/about'}">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{'/myBoard'}">myBoard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{'/chat'}">Chat</a>
-              </li>
-            </ul>
-            <div>
-                <span id="username-area" style="color: white;"></span>
-            </div>
-        </div>
-	</nav>
-    <button id="openBtn" class="open-button">Todo</button>
-    <div id="todoPopup">
-        <h2>todo-list</h1>
-        <form id="todo-form">
-            <input type="text" placeholder="Write a To Do and Press Enter" required />
-        </form>
-        <ul id="todo-list"></ul>
-        <div class="text-right">
-            <button id="closeBtn" type="button" class="btn btn-outline-secondary">Close</button>
-        </div>
-    </div>
-    <div layout:fragment="page_content"></div>
-    <div class="footer" id="base_footer">
-        <div class="email-section py-3 text-left text-white">
-            <div class="row">
-                <div class="col-6 pl-5">
-                    hwan20c@gmail.com
-                </div>
-                <div class="col-6 text-right pr-5">
-                    Copyright &copy; cb0h.cf
-                </div>
-            </div>
-        </div>
-    </div>
-    <script type="text/javascript">
-			document.cookie = "safeCookie1=foo; SameSite=Lax"; 
-      document.cookie = "safeCookie2=foo"; 
-      document.cookie = "crossCookie=bar; SameSite=None; Secure";
-      const _ctx = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
-			</script>
-    <script th:src="@{/js/base/todo.js}"></script>
-    <script th:src="@{/js/base/login.js}"></script>
+		<div layout:fragment="page_content"></div>
+		<div class="footer" id="base_footer">
+			<div class="email-section py-3 text-left text-white">
+				<div class="row">
+					<div class="col-6 pl-5">
+							hwan20c@gmail.com
+					</div>
+					<div class="col-6 text-right pr-5">
+							Copyright &copy; cb0h.cf
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		document.cookie = "safeCookie1=foo; SameSite=Lax"; 
+		document.cookie = "safeCookie2=foo"; 
+		document.cookie = "crossCookie=bar; SameSite=None; Secure";
+		const _ctx = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
+	</script>
+	<script th:src="@{/js/base/todo.js}"></script>
+	<script th:src="@{/js/base/login.js}"></script>
 	<div layout:fragment="script_area"></div>
 </body>
 </html>

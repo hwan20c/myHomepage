@@ -1,3 +1,10 @@
+const boardsTotalsize = document.getElementById("boardsTotal").value;
+const boardLayout = document.getElementById("boardLayout");
+
+if(boardsTotalsize == 0) {
+  boardLayout.className += ' h-100';
+}
+
 const main = {
   init: function() {
     const _this = this;

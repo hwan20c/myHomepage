@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bh.tb.model.Board;
@@ -49,8 +49,9 @@ public class BoardController {
   }
 
 	@GetMapping("/create")
-	public String create(HttpServletRequest request, Model model) {
-		model.addAttribute("board", new Board());
+	public String create(HttpServletRequest request, Model model, @RequestParam(defaultValue = "0") int id) {
+		Board board = (id !=0 ) ? boardRestService.get(id) : new Board();
+		model.addAttribute("board", board);
 		return "board/create";
 	}
 
@@ -65,23 +66,11 @@ public class BoardController {
 		}
 	}
 
-	@GetMapping("/{boardId}/edit")
-	public String editBoard(@PathVariable int boardId, Model model) {
-		Board board = boardRestService.get(boardId);
-		model.addAttribute("board", board);
-		return "board/edit";
-	}
 
-	@PutMapping
-	public String updateBoard(Board board) {
-		boardRestService.edit(board);
-		return "redirect:board/myBoard";
-	}
-
-	@DeleteMapping
+	@DeleteMapping("/{id}")
 	@ResponseBody
-	public String deleteBoard(Board board) {
-		boardRestService.delete(board);
+	public String deleteBoard(@PathVariable String id) {
+		boardRestService.delete(Integer.parseInt(id));
 		return "success";
 	}
     

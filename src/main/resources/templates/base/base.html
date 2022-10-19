@@ -72,6 +72,7 @@
 		document.cookie = "safeCookie2=foo"; 
 		document.cookie = "crossCookie=bar; SameSite=None; Secure";
 		const _ctx = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
+		const token = $('meta[name="_csrf"]').attr('content');
 	</script>
 	<script th:src="@{/js/base/todo.js}"></script>
 	<script th:src="@{/js/base/login.js}"></script>

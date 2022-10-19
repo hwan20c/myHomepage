@@ -62,8 +62,10 @@
             <div class="btn_area">
               <div class="row">
                 <div class="col text-right">
-                  <button sec:authorize="hasRole('ADMIN')" th:if="${board.id != 0}" class="btn danger" id="btn-remove" th:value="${board.id}">삭제</button>
-                  <a sec:authorize="hasRole('ADMIN')" th:href="@{/myBoard/create?id={id}(menu = ${menu}, id=${board.id})}" class="btn">수정</a>
+                  <!-- <button sec:authorize="hasRole('ADMIN')" th:if="${board.id != 0}" class="btn danger" id="btn-remove" th:value="${board.id}">삭제</button> -->
+                  <button th:if="${board.id != 0}" class="btn danger" id="btn-remove" th:value="${board.id}">삭제</button>
+                  <!-- <a sec:authorize="hasRole('ADMIN')" th:href="@{/myBoard/create?id={id}(menu = ${menu}, id=${board.id})}" class="btn">수정</a> -->
+                  <a th:href="@{/myBoard/create?id={id}(id=${board.id})}" class="btn">수정</a>
                   <a th:href="@{/myBoard}" class="btn ghost" id="btn-back">목록</a>
                 </div>
               </div>
@@ -74,4 +76,10 @@
       </main>
     </div>
   </body>
+  <th:block layout:fragment="script_area">
+		<script>
+			const searchUrl = _ctx + '/myBoard';
+		</script>
+		<script th:src="@{/js/board/boardDetail.js}"></script>
+	</th:block>
 </html>

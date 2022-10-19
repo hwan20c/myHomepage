@@ -2,6 +2,7 @@ package com.bh.tb.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -39,7 +40,7 @@ public class WebSecurityConfig {
 			.authorizeRequests().antMatchers("/files/**").permitAll()
 			.antMatchers("/").permitAll()
 			// .antMatchers("/myBoard/create").hasAnyRole("ADMIN")
-			.antMatchers("/myBoard/delete").hasAnyRole("ADMIN")
+			// .antMatchers(HttpMethod.DELETE, "/myBoard/{id}").hasAnyRole("ADMIN")
 			.anyRequest().permitAll()
 			.and()
 			.formLogin()

@@ -9,11 +9,15 @@ spring:
     restart: 
       enabled : true
   datasource:
-    username: root
-    password: 1234
-    url: jdbc:mysql://localhost:3306/myhomepage?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: ENC(058GvSA0fG9dLcgaG0QInw==)
+    password: ENC(T91uIDM5OrUBtEyW2R7VCw==)
+    url: ENC(2vRaebtX47xv+uhSyPBV+6L1sic/ivC505NRGVwWZs8fwBNlCWq6SzAQd2OfxLGJL7wq7Lny8IidzamD1EotnMPYP54Ty7wNdQ1hZnmayYWVMwqg7Unp6AgrYxnfhPpfU2qHU65U2aM=)
     driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: none
     show-sql: true
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
+    password:

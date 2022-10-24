@@ -1,8 +1,9 @@
 package com.bh.tb.model;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -11,22 +12,22 @@ public class Board {
 	private int id;
 	private String title;
 	private String content;
-	private String autor;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	private int viewCount;
 	private String imagePath;
-	private List<File> files;
+	private List<ContentsFile> contentsFiles;
 
+	@JsonIgnore
 	public String getFilesStringValue() {
 		StringBuilder sb = new StringBuilder();
-		if(this.files != null && !this.files.isEmpty()) {
+		if(this.contentsFiles != null && !this.contentsFiles.isEmpty()) {
 			int index = 0;
-			for(File file : this.files) {
+			for(ContentsFile contentsFiles : this.contentsFiles) {
 				if(index++ != 0) {
 					sb.append(" // ");
 				}
-				sb.append(file.getName());
+				sb.append(contentsFiles.getName());
 			}
 		} else {
 			return "";
@@ -34,6 +35,7 @@ public class Board {
 		return sb.toString();
 	}
 	
+	@JsonIgnore
 	public String getViewImageName() {
 		if(this.imagePath != null) {
 			String[] splitImageName = this.imagePath.split("/");

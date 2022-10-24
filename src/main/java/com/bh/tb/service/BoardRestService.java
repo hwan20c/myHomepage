@@ -1,12 +1,22 @@
 package com.bh.tb.service;
 
+import java.io.IOException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bh.tb.model.Board;
 import com.bh.tb.util.PageableResponse;
@@ -35,8 +45,53 @@ public class BoardRestService {
     return restTemplate.getForObject(BOARD_API_SERVER + "/" + id, Board.class);
   }
 
-  public Board create(Board board) {
-    return restTemplate.postForObject(BOARD_API_SERVER, board, Board.class);
+  // public Board create(Board board) {
+  //   return restTemplate.postForObject(BOARD_API_SERVER, board, Board.class);
+  // }
+
+  public Board create(Board board, List<MultipartFile> attachedFiles, MultipartFile mainImageFile) throws IOException {
+    HttpHeaders httpHeaders = new HttpHeaders();
+    httpHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
+    MultiValueMap<String, Object> creationMap = new LinkedMultiValueMap<>();
+
+    if(attachedFiles.isEmpty()) System.out.println("@@@@@@@@@@@@@ 23444444");
+    
+    if(!attachedFiles.get(0).isEmpty() ) {
+      System.out.println("@@@@@@ 21234");
+      ByteArrayResource fileResource = new ByteArrayResource(null);
+
+      for(MultipartFile attachedFile : attachedFiles) {
+        fileResource = new ByteArrayResource(attachedFile.getBytes()) {
+          @Override
+          public String getFilename() {
+            return attachedFile.getOriginalFilename();
+          }
+        };
+        creationMap.add("attachedFiles", fileResource);
+      }
+      // List<ByteArrayResource> fileResource = new List<ByteArrayResource(attachedFiles.get(0).getBytes())> {
+      // ByteArrayResource fileResource = new ByteArrayResource(attachedFiles.get(0).getBytes()) {
+      //   @Override
+      //   public String getFilename() {
+      //     return attachedFiles.get(0).getOriginalFilename();
+      //   }
+      // };
+      // creationMap.add("attachedFiles", fileResource);
+    }
+
+    if(!mainImageFile.isEmpty()) {
+      ByteArrayResource fileResource = new ByteArrayResource(mainImageFile.getBytes()) {
+        @Override
+        public String getFilename() {
+          return mainImageFile.getOriginalFilename();
+        }};
+      creationMap.add("mainImageFile", fileResource);
+    } 
+
+    creationMap.add("board", board);
+    HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(creationMap, httpHeaders);
+
+    return restTemplate.postForObject(BOARD_API_SERVER, httpEntity, Board.class);
   }
 
   public void edit(Board board) {

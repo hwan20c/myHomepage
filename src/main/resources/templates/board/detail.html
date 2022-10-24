@@ -51,7 +51,7 @@
             <hr class="straight_line">
 
             <div class="brd_td">
-              <th:block th:each="file : ${board.files}">
+              <th:block th:each="file : ${board.contentsFiles}">
                 <a th:href="@{/files/{id}(id = ${file.id})}" class="file_down" role="button" th:data-path="${file.path}" th:data-name="${file.name}" th:text="${file.name}">'중소기업 4차산업혁명위원회' 위원장 위촉자료.xlsx</a><br>
               </th:block>
             </div>

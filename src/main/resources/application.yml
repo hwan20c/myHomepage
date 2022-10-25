@@ -2,6 +2,7 @@ app:
   api:
     url: http://localhost
     port: 8090
+    
 spring:
   devtools:
     livereload: 
@@ -17,6 +18,11 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
 jasypt:
   encryptor:
     bean: jasyptStringEncryptor

@@ -65,8 +65,8 @@ public class BoardController {
 	public String createBoard(Board board, Model model,
 														@RequestPart(required = false, name = "file") List<MultipartFile> multipartFiles, 
 														@RequestPart(required = false) MultipartFile imageFile) throws IOException {
-		System.out.println("@@@@@@@@@@ : " + board.toString() + " / " + imageFile.getOriginalFilename());
-		System.out.println("@@@@@@@@@@ : " + multipartFiles.get(0).getOriginalFilename());
+		System.out.println("@@@@@@@@@@ 1: " + board.toString() + " / " + imageFile.getOriginalFilename());
+		System.out.println("@@@@@@@@@@ 2: " + multipartFiles.get(0).getOriginalFilename());
 		Board response = boardRestService.create(board, multipartFiles, imageFile);
 		if (response != null) {
 			return "redirect:/myBoard";

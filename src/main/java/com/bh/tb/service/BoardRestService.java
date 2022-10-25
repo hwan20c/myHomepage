@@ -58,7 +58,7 @@ public class BoardRestService {
     
     if(!attachedFiles.get(0).isEmpty() ) {
       System.out.println("@@@@@@ 21234");
-      ByteArrayResource fileResource = new ByteArrayResource(null);
+      ByteArrayResource fileResource = new ByteArrayResource(attachedFiles.get(0).getBytes());
 
       for(MultipartFile attachedFile : attachedFiles) {
         fileResource = new ByteArrayResource(attachedFile.getBytes()) {

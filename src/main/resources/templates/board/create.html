@@ -135,6 +135,12 @@
         function uploadSummernoteImageFile(file, editor) {
           const formData = new FormData();
           formData.append('file', file);
+          for (var key of formData.keys()) {
+            console.log(key);
+          }
+          for (var value of formData.values()) {
+            console.log(value);
+          }
           $.ajax({
             url: _ctx + '/contentsFile',
             type: 'POST',
@@ -147,9 +153,9 @@
             data: formData
           }).done(function(response) {
             // console.log(response);
-            $(editor).summernote('insertImage', response.url);
+            $(editor).summernote('insertImage', response.path);
           }).fail(function(error) {
-            console.log('[ Error Response ]\n fffffffff' + error)
+            console.log('[ Error Response ]\n' + error)
           });
         }
     

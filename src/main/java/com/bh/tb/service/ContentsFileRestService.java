@@ -46,7 +46,7 @@ public class ContentsFileRestService {
         public String getFilename() {
           return multipartFile.getOriginalFilename();
         }};
-      creationMap.add("mainImageFile", fileResource);
+      creationMap.add("file", fileResource);
     }
     HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(creationMap, httpHeaders);
     return restTemplate.postForObject(CONTENTSFILE_API_SERVER, httpEntity, ContentsFile.class);

@@ -31,6 +31,7 @@ public class ContentsFileController {
 
   @PostMapping
   public ResponseEntity<ContentsFile> upload(@RequestParam("file") MultipartFile multipartFile) throws IOException {
+    System.out.println("@@@@@@@@@@@@@ 1 : " + multipartFile.getOriginalFilename());
     ContentsFile contentsFile = contentsFileRestService.upload(multipartFile);
     return new ResponseEntity<>(contentsFile, HttpStatus.OK);
   }

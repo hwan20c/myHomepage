@@ -24,7 +24,6 @@ import com.bh.tb.util.PageableResponse;
 @Service
 public class BoardRestService {
   private final RestTemplate restTemplate;
-
   public String BOARD_API_SERVER = "";
 
   @Autowired
@@ -45,19 +44,13 @@ public class BoardRestService {
     return restTemplate.getForObject(BOARD_API_SERVER + "/" + id, Board.class);
   }
 
-  // public Board create(Board board) {
-  //   return restTemplate.postForObject(BOARD_API_SERVER, board, Board.class);
-  // }
-
+  //create + edit
   public Board create(Board board, List<MultipartFile> attachedFiles, MultipartFile mainImageFile) throws IOException {
     HttpHeaders httpHeaders = new HttpHeaders();
     httpHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
     MultiValueMap<String, Object> creationMap = new LinkedMultiValueMap<>();
-
-    if(attachedFiles.isEmpty()) System.out.println("@@@@@@@@@@@@@ 23444444");
     
     if(!attachedFiles.get(0).isEmpty() ) {
-      System.out.println("@@@@@@ 21234");
       ByteArrayResource fileResource = new ByteArrayResource(attachedFiles.get(0).getBytes());
 
       for(MultipartFile attachedFile : attachedFiles) {
@@ -69,14 +62,6 @@ public class BoardRestService {
         };
         creationMap.add("attachedFiles", fileResource);
       }
-      // List<ByteArrayResource> fileResource = new List<ByteArrayResource(attachedFiles.get(0).getBytes())> {
-      // ByteArrayResource fileResource = new ByteArrayResource(attachedFiles.get(0).getBytes()) {
-      //   @Override
-      //   public String getFilename() {
-      //     return attachedFiles.get(0).getOriginalFilename();
-      //   }
-      // };
-      // creationMap.add("attachedFiles", fileResource);
     }
 
     if(!mainImageFile.isEmpty()) {
@@ -92,10 +77,6 @@ public class BoardRestService {
     HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(creationMap, httpHeaders);
 
     return restTemplate.postForObject(BOARD_API_SERVER, httpEntity, Board.class);
-  }
-
-  public void edit(Board board) {
-    restTemplate.put(BOARD_API_SERVER, board, Board.class);
   }
 
   public void delete(int id) {

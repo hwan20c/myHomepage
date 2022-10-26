@@ -136,7 +136,7 @@
           const formData = new FormData();
           formData.append('file', file);
           $.ajax({
-            url: _ctx + 'files',
+            url: _ctx + '/contentsFile',
             type: 'POST',
             headers: {
               'X-CSRF-TOKEN': token
@@ -149,7 +149,7 @@
             // console.log(response);
             $(editor).summernote('insertImage', response.url);
           }).fail(function(error) {
-            console.log('[ Error Response ]\n' + error)
+            console.log('[ Error Response ]\n fffffffff' + error)
           });
         }
     

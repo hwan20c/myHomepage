@@ -1,6 +1,8 @@
 package com.bh.tb.service;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,6 +52,15 @@ public class ContentsFileRestService {
     }
     HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(creationMap, httpHeaders);
     return restTemplate.postForObject(CONTENTSFILE_API_SERVER, httpEntity, ContentsFile.class);
+  }
+
+  public void delete(String url) {
+    HttpHeaders httpHeaders = new HttpHeaders();
+    httpHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
+    MultiValueMap<String, String> creationMap = new LinkedMultiValueMap<>();
+    creationMap.add("url", url);
+    HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(creationMap, httpHeaders);
+    restTemplate.exchange(CONTENTSFILE_API_SERVER, HttpMethod.DELETE, httpEntity, String.class);
   }
   
 }

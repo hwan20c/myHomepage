@@ -116,7 +116,7 @@
           lang: 'ko-KR',
           placeholder: '게시글의 본문을 적는 곳입니다. 내용을 입력해주세요.',
           callbacks: {
-            onImageUpload: function(files) {
+              onImageUpload: function(files) {
               uploadSummernoteImageFile(files[0], this);
             },
             // 기본값 사용시 base64 인코딩된 이미지 파일과 url 기반 업로드 이미지 파일 두개가 들어가는 버그 해결위한 함수
@@ -128,6 +128,10 @@
                   e.preventDefault();
                 }
               }
+            },
+
+            onMediaDelete: function(target) {
+              deleteSummernoteImageFile(target[0], this);
             }
           }
         });
@@ -135,12 +139,6 @@
         function uploadSummernoteImageFile(file, editor) {
           const formData = new FormData();
           formData.append('file', file);
-          for (var key of formData.keys()) {
-            console.log(key);
-          }
-          for (var value of formData.values()) {
-            console.log(value);
-          }
           $.ajax({
             url: _ctx + '/contentsFile',
             type: 'POST',
@@ -156,6 +154,23 @@
             $(editor).summernote('insertImage', response.path);
           }).fail(function(error) {
             console.log('[ Error Response ]\n' + error)
+          });
+        }
+
+        function deleteSummernoteImageFile(file, editor) {
+          const url = decodeURI(file.src);
+          const urlArr = url.split("/");
+          $.ajax({
+            type: 'DELETE',
+            url: _ctx + '/contentsFile',
+            headers: {
+              'X-CSRF-TOKEN': token
+            },
+            data: {'url': url}
+          }).done(function (response) {
+              alert("삭제되었습니다.");
+          }).fail(function (error) {
+              alert("삭제 실패");
           });
         }
     

@@ -38,9 +38,8 @@ public class ContentsFileController {
   }
 
   @DeleteMapping
-  public String delete(@RequestParam("url") String url) {
+  public ResponseEntity<String> delete(@RequestParam("url") String url) {
     System.out.println("@@@@@@@@@@@@@ 2 : " + url);
-    contentsFileRestService.delete(url);
-    return "success";
+    return contentsFileRestService.delete(url);
   }
 }

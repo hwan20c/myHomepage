@@ -54,13 +54,13 @@ public class ContentsFileRestService {
     return restTemplate.postForObject(CONTENTSFILE_API_SERVER, httpEntity, ContentsFile.class);
   }
 
-  public void delete(String url) {
+  public ResponseEntity<String> delete(String url) {
     HttpHeaders httpHeaders = new HttpHeaders();
     httpHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
     MultiValueMap<String, String> creationMap = new LinkedMultiValueMap<>();
     creationMap.add("url", url);
     HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(creationMap, httpHeaders);
-    restTemplate.exchange(CONTENTSFILE_API_SERVER, HttpMethod.DELETE, httpEntity, String.class);
+    return restTemplate.exchange(CONTENTSFILE_API_SERVER, HttpMethod.DELETE, httpEntity, String.class);
   }
   
 }

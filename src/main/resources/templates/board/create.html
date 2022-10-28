@@ -150,7 +150,6 @@
             enctype: 'multipart/form-data',
             data: formData
           }).done(function(response) {
-            // console.log(response);
             $(editor).summernote('insertImage', response.path);
           }).fail(function(error) {
             console.log('[ Error Response ]\n' + error)
@@ -159,7 +158,6 @@
 
         function deleteSummernoteImageFile(file, editor) {
           const url = decodeURI(file.src);
-          const urlArr = url.split("/");
           $.ajax({
             type: 'DELETE',
             url: _ctx + '/contentsFile',
@@ -167,8 +165,8 @@
               'X-CSRF-TOKEN': token
             },
             data: {'url': url}
-          }).done(function (response) {
-              alert("삭제되었습니다.");
+          }).done(function (String) {
+              // alert("삭제되었습니다.");
           }).fail(function (error) {
               alert("삭제 실패");
           });
@@ -191,6 +189,42 @@
             e.preventDefault();
           }
         });
+
+        window.addEventListener('beforeunload', function (e) {
+          e.preventDefault();
+          e.returnValue = deleteSummernoteImageFiles(img_find());
+        });
+  
+        function img_find() {
+          let imgs = document.getElementsByTagName("img");
+          var imgSrcs = [];
+
+          for (var i = 0; i < imgs.length; i++) {
+            imgSrcs.push(decodeURI(imgs[i].src));
+          }
+
+          return imgSrcs;
+        }
+
+        function deleteSummernoteImageFiles(imgSrcs) {
+
+          for(let i=0; i<imgSrcs.length; i++) {
+            $.ajax({
+            type: 'DELETE',
+            url: _ctx + '/contentsFile',
+            headers: {
+              'X-CSRF-TOKEN': token
+            },
+            data: {'url': imgSrcs[i].toString()},
+            }).done(function (String) {
+                alert("삭제되었습니다.");
+                $(editor).summernote('reset');
+            }).fail(function (error) {
+                alert("삭제 실패");
+            });
+          }
+        }
+
       </script>
 	</div>
 	</body>

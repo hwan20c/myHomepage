@@ -86,7 +86,7 @@
               </div>
               <div class="row">
                 <div class="btn-group-toggle col-6 text-right">
-                  <input type="submit" class="btn btn-primary" th:value="${board.id != 0 ? '수정' : '등록'}" />
+                  <input type="submit" class="btn btn-primary" th:value="${board.id != 0 ? '수정' : '등록'}"/>
                   <a th:href="@{/myBoard}" class="btn btn-danger">취소</a>
                 </div>
               </div>
@@ -188,12 +188,13 @@
             alert('글을 입력해주세요');
             e.preventDefault();
           }
+          $(window).off('beforeunload');
         });
 
-        window.addEventListener('beforeunload', function (e) {
-          e.preventDefault();
-          e.returnValue = deleteSummernoteImageFiles(img_find());
-        });
+        // window.addEventListener('beforeunload', function (e) {
+        //   e.preventDefault();
+        //   e.returnValue = deleteSummernoteImageFiles(img_find());
+        // });
   
         function img_find() {
           let imgs = document.getElementsByTagName("img");

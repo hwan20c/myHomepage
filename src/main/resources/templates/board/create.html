@@ -135,25 +135,64 @@
             }
           }
         });
-    
+
+        const IMAGES_KEY = "images";
+        let imagesObject = [];
+
+        function handleFileSelect(file) {
+          // var files = evt.target.files; // FileList object
+
+          // Loop through the FileList and render image files as thumbnails.
+            // Only process image files.
+          console.log("@@@@" + file);
+
+          var reader = new FileReader();
+          // Closure to capture the file information.
+          reader.onload = function(file) {
+            addImage(file.target.result);
+          };
+
+          // for(let i = 0; i < imagesObject.length; i++) {
+          //   console.log("@@@@@@@@@ + fsaf : " + imagesObject[i]);
+          // }  
+          
+          return reader.readAsDataURL(file);
+        }
+
+        function addImage(imgData) {
+          // console.log(imgData);
+          imagesObject.push(imgData);
+          localStorage.setItem(IMAGES_KEY, JSON.stringify(imgData));
+        }
+        
         function uploadSummernoteImageFile(file, editor) {
-          const formData = new FormData();
-          formData.append('file', file);
-          $.ajax({
-            url: _ctx + '/contentsFile',
-            type: 'POST',
-            headers: {
-              'X-CSRF-TOKEN': token
-            },
-            contentType: false,
-            processData: false,
-            enctype: 'multipart/form-data',
-            data: formData
-          }).done(function(response) {
-            $(editor).summernote('insertImage', response.path);
-          }).fail(function(error) {
-            console.log('[ Error Response ]\n' + error)
-          });
+          // const formData = new FormData();
+          // formData.append('file', file);
+          // addImage(file);
+          console.log("hi");
+          // handleFileSelect(file);
+
+          // var reader = new FileReader();
+          
+          $(editor).summernote('insertImage', handleFileSelect(file));
+          
+          // $.ajax({
+          //   url: _ctx + '/contentsFile',
+          //   type: 'POST',
+          //   headers: {
+          //     'X-CSRF-TOKEN': token
+          //   },
+          //   contentType: false,
+          //   processData: false,
+          //   enctype: 'multipart/form-data',
+          //   data: formData
+          // }).done(function(response) {
+          //   $(editor).summernote('insertImage', response.path);
+          // }).fail(function(error) {
+          //   console.log('[ Error Response ]\n' + error)
+          // });
+
+          // $(editor).summernote('insertImage', response.path);
         }
 
         function deleteSummernoteImageFile(file, editor) {

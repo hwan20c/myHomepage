@@ -87,7 +87,7 @@
               <div class="row">
                 <div class="btn-group-toggle col-6 text-right">
                   <input type="submit" class="btn btn-primary" th:value="${board.id != 0 ? '수정' : '등록'}"/>
-                  <a th:href="@{/myBoard}" class="btn btn-danger">취소</a>
+                  <a th:href="@{/myBoard}" id="btn_cancle" class="btn btn-danger">취소</a>
                 </div>
               </div>
             </form>
@@ -116,7 +116,7 @@
           lang: 'ko-KR',
           placeholder: '게시글의 본문을 적는 곳입니다. 내용을 입력해주세요.',
           callbacks: {
-              onImageUpload: function(files) {
+            onImageUpload: function(files) {
               uploadSummernoteImageFile(files[0], this);
             },
             // 기본값 사용시 base64 인코딩된 이미지 파일과 url 기반 업로드 이미지 파일 두개가 들어가는 버그 해결위한 함수
@@ -138,61 +138,25 @@
 
         const IMAGES_KEY = "images";
         let imagesObject = [];
-
-        function handleFileSelect(file) {
-          // var files = evt.target.files; // FileList object
-
-          // Loop through the FileList and render image files as thumbnails.
-            // Only process image files.
-          console.log("@@@@" + file);
-
-          var reader = new FileReader();
-          // Closure to capture the file information.
-          reader.onload = function(file) {
-            addImage(file.target.result);
-          };
-
-          // for(let i = 0; i < imagesObject.length; i++) {
-          //   console.log("@@@@@@@@@ + fsaf : " + imagesObject[i]);
-          // }  
-          
-          return reader.readAsDataURL(file);
-        }
-
-        function addImage(imgData) {
-          // console.log(imgData);
-          imagesObject.push(imgData);
-          localStorage.setItem(IMAGES_KEY, JSON.stringify(imgData));
-        }
         
         function uploadSummernoteImageFile(file, editor) {
-          // const formData = new FormData();
-          // formData.append('file', file);
-          // addImage(file);
-          console.log("hi");
-          // handleFileSelect(file);
-
-          // var reader = new FileReader();
-          
-          $(editor).summernote('insertImage', handleFileSelect(file));
-          
-          // $.ajax({
-          //   url: _ctx + '/contentsFile',
-          //   type: 'POST',
-          //   headers: {
-          //     'X-CSRF-TOKEN': token
-          //   },
-          //   contentType: false,
-          //   processData: false,
-          //   enctype: 'multipart/form-data',
-          //   data: formData
-          // }).done(function(response) {
-          //   $(editor).summernote('insertImage', response.path);
-          // }).fail(function(error) {
-          //   console.log('[ Error Response ]\n' + error)
-          // });
-
-          // $(editor).summernote('insertImage', response.path);
+          const formData = new FormData();
+          formData.append('file', file);
+          $.ajax({
+            url: _ctx + '/contentsFile',
+            type: 'POST',
+            headers: {
+              'X-CSRF-TOKEN': token
+            },
+            contentType: false,
+            processData: false,
+            enctype: 'multipart/form-data',
+            data: formData
+          }).done(function(response) {
+            $(editor).summernote('insertImage', response.path);
+          }).fail(function(error) {
+            console.log('[ Error Response ]\n' + error)
+          });
         }
 
         function deleteSummernoteImageFile(file, editor) {
@@ -229,11 +193,6 @@
           }
           $(window).off('beforeunload');
         });
-
-        // window.addEventListener('beforeunload', function (e) {
-        //   e.preventDefault();
-        //   e.returnValue = deleteSummernoteImageFiles(img_find());
-        // });
   
         function img_find() {
           let imgs = document.getElementsByTagName("img");
@@ -246,8 +205,7 @@
           return imgSrcs;
         }
 
-        function deleteSummernoteImageFiles(imgSrcs) {
-
+        function deleteSummernoteContentsImageFiles(imgSrcs) {
           for(let i=0; i<imgSrcs.length; i++) {
             $.ajax({
             type: 'DELETE',
@@ -257,13 +215,17 @@
             },
             data: {'url': imgSrcs[i].toString()},
             }).done(function (String) {
-                alert("삭제되었습니다.");
-                $(editor).summernote('reset');
+              $(editor).summernote('reset');
             }).fail(function (error) {
                 alert("삭제 실패");
             });
           }
+          alert("삭제되었습니다.");
         }
+
+        $('#btn_cancle').on('click', function() {
+          deleteSummernoteContentsImageFiles(img_find());
+        });
 
       </script>
 	</div>

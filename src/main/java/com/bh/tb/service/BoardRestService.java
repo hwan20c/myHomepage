@@ -45,7 +45,7 @@ public class BoardRestService {
   }
 
   //create + edit
-  public Board create(Board board, List<MultipartFile> attachedFiles, MultipartFile mainImageFile) throws IOException {
+  public Board create(Board board, List<MultipartFile> attachedFiles, MultipartFile mainImageFile, List<String> contentFileNames) throws IOException {
     HttpHeaders httpHeaders = new HttpHeaders();
     httpHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);
     MultiValueMap<String, Object> creationMap = new LinkedMultiValueMap<>();
@@ -71,7 +71,11 @@ public class BoardRestService {
           return mainImageFile.getOriginalFilename();
         }};
       creationMap.add("mainImageFile", fileResource);
-    } 
+    }
+    
+    if(!contentFileNames.isEmpty()) {
+      creationMap.add("contentFileNames", contentFileNames);
+    }
 
     creationMap.add("board", board);
     HttpEntity<MultiValueMap<String, Object>> httpEntity = new HttpEntity<>(creationMap, httpHeaders);

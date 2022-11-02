@@ -1,6 +1,7 @@
 package com.bh.tb.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -63,8 +64,10 @@ public class BoardController {
 	@PostMapping
 	public String createBoard(Board board, Model model,
 														@RequestPart(required = false, name = "file") List<MultipartFile> multipartFiles, 
-														@RequestPart(required = false) MultipartFile imageFile) throws IOException {
-		Board response = boardRestService.create(board, multipartFiles, imageFile);
+														@RequestPart(required = false) MultipartFile imageFile,
+	 													@RequestParam(required = false, name = "content_file_names")List<String> contentFileNames) throws IOException {
+		System.out.println("@@@@@@@@ : " + contentFileNames);
+		Board response = boardRestService.create(board, multipartFiles, imageFile, contentFileNames);
 		if (response != null) {
 			return "redirect:/myBoard";
 		} else {

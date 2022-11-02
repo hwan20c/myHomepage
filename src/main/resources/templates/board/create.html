@@ -83,6 +83,7 @@
                     </tr>
                   </tbody>
                 </table>
+                <input type="text" id="upload-contents-image" name="content_file_names" />
               </div>
               <div class="row">
                 <div class="btn-group-toggle col-6 text-right">
@@ -118,6 +119,7 @@
           callbacks: {
             onImageUpload: function(files) {
               uploadSummernoteImageFile(files[0], this);
+             
             },
             // 기본값 사용시 base64 인코딩된 이미지 파일과 url 기반 업로드 이미지 파일 두개가 들어가는 버그 해결위한 함수
             onPaste: function(e) {
@@ -136,8 +138,7 @@
           }
         });
 
-        const IMAGES_KEY = "images";
-        let imagesObject = [];
+        let contentsImageFiles = [];
         
         function uploadSummernoteImageFile(file, editor) {
           const formData = new FormData();
@@ -154,6 +155,9 @@
             data: formData
           }).done(function(response) {
             $(editor).summernote('insertImage', response.path);
+            contentsImageFiles.push(response.path);
+            console.log(contentsImageFiles);
+            $('input[name=content_file_names]').attr('value', contentsImageFiles);
           }).fail(function(error) {
             console.log('[ Error Response ]\n' + error)
           });
@@ -169,7 +173,9 @@
             },
             data: {'url': url}
           }).done(function (String) {
-              // alert("삭제되었습니다.");
+            contentsImageFiles.pop(url);
+            console.log(contentsImageFiles);
+            $('input[name=content_file_names]').removeAttr('value', contentsImageFiles);
           }).fail(function (error) {
               alert("삭제 실패");
           });

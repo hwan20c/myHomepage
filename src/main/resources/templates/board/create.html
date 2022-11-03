@@ -97,7 +97,7 @@
 					
 			</div>
 		<div layout:fragment="script_area">
-      <script th:src="@{/ext/summernote/summernote-lite.js}"></script>
+      <script th:src="@{/ext/summernote/summernote-lite.js}"></script> -->
       <script th:src="@{/ext/summernote/lang/summernote-ko-KR.js}"></script>
       <script>
         $('#editor').summernote({
@@ -119,7 +119,6 @@
           callbacks: {
             onImageUpload: function(files) {
               uploadSummernoteImageFile(files[0], this);
-             
             },
             // 기본값 사용시 base64 인코딩된 이미지 파일과 url 기반 업로드 이미지 파일 두개가 들어가는 버그 해결위한 함수
             onPaste: function(e) {
@@ -131,15 +130,15 @@
                 }
               }
             },
-
             onMediaDelete: function(target) {
               deleteSummernoteImageFile(target[0], this);
-            }
-          }
+            },
+            removeMedia: function(target) {
+              deleteSummernoteImageFile(target[0], this);
+            },
+          },
         });
 
-        let contentsImageFiles = [];
-        
         function uploadSummernoteImageFile(file, editor) {
           const formData = new FormData();
           formData.append('file', file);
@@ -175,7 +174,7 @@
           }).done(function (String) {
             contentsImageFiles.pop(url);
             console.log(contentsImageFiles);
-            $('input[name=content_file_names]').removeAttr('value', contentsImageFiles);
+            $('input[name=content_file_names]').attr('value', contentsImageFiles);
           }).fail(function (error) {
               alert("삭제 실패");
           });
@@ -199,12 +198,22 @@
           }
           $(window).off('beforeunload');
         });
+        
+        let contentsImageFiles = [];
+        const form = $('#board-form')[0];
+
+        form.addEventListener('submit', function(event) {
+          event.preventDefault(); // 기본 동작인 submit 중단
+          contentsImageFiles = img_find();
+          $('input[name=content_file_names]').attr('value', contentsImageFiles);
+          form.submit();	//이벤트 수행 후, form submit 진행
+        });
   
         function img_find() {
           let imgs = document.getElementsByTagName("img");
-          var imgSrcs = [];
+          let imgSrcs = [];
 
-          for (var i = 0; i < imgs.length; i++) {
+          for (let i = 0; i < imgs.length; i++) {
             imgSrcs.push(decodeURI(imgs[i].src));
           }
 

@@ -9,6 +9,7 @@ const main = {
   delete: function() {
     const base_request_url = _ctx + '/myBoard';
     const id = $('#btn-remove').val();
+    const fileUrls = _this.fileSrcget;
 
     $.ajax({
       type: 'DELETE',
@@ -22,6 +23,17 @@ const main = {
     }).fail(function(error) {
       console.log('[ Error Response ]\n' + error)
     });
+  },
+
+  fileSrcget: function() {
+    let imgs = document.getElementsByTagName("img");
+    let imgSrcs = [];
+
+    for (let i = 0; i < imgs.length; i++) {
+      imgSrcs.push(decodeURI(imgs[i].src));
+    }
+
+    return imgSrcs;
   }
 };
 

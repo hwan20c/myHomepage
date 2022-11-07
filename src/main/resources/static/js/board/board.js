@@ -1,8 +1,8 @@
-const boardsTotalsize = document.getElementById("boardsTotal").value;
+const countBoardList = document.querySelectorAll("#board_ul li").length
 const boardLayout = document.getElementById("boardLayout");
 
-if(boardsTotalsize == 0) {
-  boardLayout.className += ' h-100';
+if(countBoardList <= 6) {
+  boardLayout.style.minHeight = (window.innerHeight * 0.85) + "px";
 }
 
 const main = {

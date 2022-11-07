@@ -1,6 +1,7 @@
 const main = {
   init: function() {
     const _this = this;
+    document.getElementById("board_contents").style.minHeight = (window.innerHeight * 0.65) + "px";
     $('#btn-remove').on('click', function() {
       _this.delete();
     })
@@ -37,6 +38,7 @@ const main = {
 
     return imgSrcs;
   }
+
 };
 
 main.init();

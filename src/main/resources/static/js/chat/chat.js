@@ -1,0 +1,1 @@
+document.getElementById("chatLayout").style.minHeight = window.innerHeight + "px";

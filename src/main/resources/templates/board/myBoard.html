@@ -67,7 +67,7 @@
 							<ul class="thumbnail_list clearfix" id="board_ul">
 								<li th:each="board : ${boards.content}">
 									<a th:href="@{/myBoard/{id}(id = ${board.id})}">
-										<img th:src="@{${board.imagePath != null ? board.imagePath : './img/assets/tech_stack/frameworks/language/js.png'}}" alt="" class="photo">
+										<img th:src="@{${board.imagePath != null ? board.imagePath : './img/board/default.png'}}" alt="" class="photo">
 										<p class="board_title" th:text="${board.title}">IT관련<br>ITIT</p>
 										<p>
 											<span th:text="${#temporals.format(board.createdAt, 'yyyy-MM-dd')}">2021-12-10</span>&ensp;

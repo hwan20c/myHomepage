@@ -39,8 +39,8 @@ public class WebSecurityConfig {
 		http
 			.authorizeRequests().antMatchers("/files/**").permitAll()
 			.antMatchers("/").permitAll()
-			// .antMatchers("/myBoard/create").hasAnyRole("ADMIN")
-			// .antMatchers(HttpMethod.DELETE, "/myBoard/{id}").hasAnyRole("ADMIN")
+			.antMatchers("/myBoard/create").hasAnyRole("ADMIN")
+			.antMatchers(HttpMethod.DELETE, "/myBoard/{id}").hasAnyRole("ADMIN")
 			.anyRequest().permitAll()
 			.and()
 			.formLogin()

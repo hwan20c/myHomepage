@@ -15,7 +15,7 @@
 		<link rel="stylesheet" th:href="@{/css/board/style.css}"/>
 		<title>Board</title>
 	</head>
-	<body>
+	<body style="overflow-x:hidden; overflow-y:auto;">
 		<div layout:fragment="page_content">
 		<input type="hidden" id="boardsTotal" th:value="${boards.totalPages}"/>
 			<main role="main" class="h-100">

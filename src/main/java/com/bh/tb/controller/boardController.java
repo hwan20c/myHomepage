@@ -1,7 +1,6 @@
 package com.bh.tb.controller;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -66,7 +65,6 @@ public class BoardController {
 														@RequestPart(required = false, name = "file") List<MultipartFile> multipartFiles, 
 														@RequestPart(required = false) MultipartFile imageFile,
 	 													@RequestParam(required = false, name = "content_file_names")List<String> contentFileNames) throws IOException {
-		System.out.println("@@@@@@@@ : " + contentFileNames);
 		Board response = boardRestService.create(board, multipartFiles, imageFile, contentFileNames);
 		if (response != null) {
 			return "redirect:/myBoard";
@@ -78,8 +76,8 @@ public class BoardController {
 
 	@DeleteMapping("/{id}")
 	@ResponseBody
-	public String deleteBoard(@PathVariable String id) {
-		boardRestService.delete(Integer.parseInt(id));
+	public String deleteBoard(@PathVariable String id, @RequestParam("fileUrls")List<String> fileUrls) {
+		boardRestService.delete(Integer.parseInt(id), fileUrls);
 		return "success";
 	}
     

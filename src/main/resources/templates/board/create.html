@@ -97,7 +97,7 @@
 					
 			</div>
 		<div layout:fragment="script_area">
-      <script th:src="@{/ext/summernote/summernote-lite.js}"></script> -->
+      <script th:src="@{/ext/summernote/summernote-lite.js}"></script>
       <script th:src="@{/ext/summernote/lang/summernote-ko-KR.js}"></script>
       <script>
         $('#editor').summernote({
@@ -155,8 +155,7 @@
           }).done(function(response) {
             $(editor).summernote('insertImage', response.path);
             contentsImageFiles.push(response.path);
-            console.log(contentsImageFiles);
-            $('input[name=content_file_names]').attr('value', contentsImageFiles);
+            // $('input[name=content_file_names]').attr('value', contentsImageFiles);
           }).fail(function(error) {
             console.log('[ Error Response ]\n' + error)
           });
@@ -173,8 +172,7 @@
             data: {'url': url}
           }).done(function (String) {
             contentsImageFiles.pop(url);
-            console.log(contentsImageFiles);
-            $('input[name=content_file_names]').attr('value', contentsImageFiles);
+            // $('input[name=content_file_names]').attr('value', contentsImageFiles);
           }).fail(function (error) {
               alert("삭제 실패");
           });

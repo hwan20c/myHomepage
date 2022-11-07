@@ -7,6 +7,7 @@ const main = {
   },
 
   delete: function() {
+    const _this = this;
     const base_request_url = _ctx + '/myBoard';
     const id = $('#btn-remove').val();
     const fileUrls = _this.fileSrcget;
@@ -17,6 +18,7 @@ const main = {
       headers: {
         'X-CSRF-TOKEN': token
       },
+      data: {'fileUrls': fileUrls},
       async: false
     }).done(function() {
       window.location.href = base_request_url;

@@ -83,8 +83,9 @@ public class BoardRestService {
     return restTemplate.postForObject(BOARD_API_SERVER, httpEntity, Board.class);
   }
 
-  public void delete(int id) {
-    restTemplate.delete(BOARD_API_SERVER+"/"+id);
+  public void delete(int id, List<String> fileUrls) {
+    HttpEntity<List<String>> httpEntity = new HttpEntity<>(fileUrls);
+    restTemplate.exchange(BOARD_API_SERVER+"/"+id, HttpMethod.DELETE, httpEntity, String.class);
   }
 
 }

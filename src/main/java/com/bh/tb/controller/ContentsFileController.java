@@ -32,14 +32,12 @@ public class ContentsFileController {
 
   @PostMapping
   public ResponseEntity<ContentsFile> upload(@RequestParam("file") MultipartFile multipartFile) throws IOException {
-    System.out.println("@@@@@@@@@@@@@ 1 : " + multipartFile.getOriginalFilename());
     ContentsFile contentsFile = contentsFileRestService.upload(multipartFile);
     return new ResponseEntity<>(contentsFile, HttpStatus.OK);
   }
 
   @DeleteMapping
   public ResponseEntity<String> delete(@RequestParam("url") String url) {
-    System.out.println("@@@@@@@@@@@@@ 2 : " + url);
     return contentsFileRestService.delete(url);
   }
 }

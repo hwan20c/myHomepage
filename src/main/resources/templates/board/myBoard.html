@@ -30,23 +30,31 @@
 				</div>
 
 				<div class="container">
-					<div class="row pb-5 text-right">
-						<div class="search_wrap">
+					<div class="row pb-5 ">
+						<div class="search_wrap col">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="forms pr-4">
+										<select title="검색어 선택" class="custom-select" id="searchKey" th:field="*{search.searchKey}">
+											<option value="">전체</option>
+											<option value="title">제목</option>
+											<option value="content">내용</option>
+										</select>
+									</span>
+									<span class="forms">
+										<div class="row">
+											<input type="text" title="검색 직접입력" id="searchValue" th:field="*{search.searchValue}" placeholder="검색어를 입력하세요"
+															class="form-control" style="width:280px;">
+											<button type="button" class="btn btn-dark ml-1" id="btn-search">검색</button>
+										</div>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="search_wrap col text-right">
 							<span class="forms">
-								<select title="검색어 선택" class="select" id="searchKey" th:field="*{search.searchKey}">
-									<option value="">전체</option>
-									<option value="title">제목</option>
-									<option value="content">내용</option>
-								</select>
-							</span>
-							<span class="forms search_inp">
-								<input type="text" title="검색 직접입력" id="searchValue" th:field="*{search.searchValue}" placeholder="검색어를 입력하세요"
-												class="inp" style="width:150px;">
-								<button type="button" class="btn_search" id="btn-search">검색</button>
-							</span>
-							<span class="forms">
-								<button sec:authorize="hasRole('ADMIN')" type="button" th:onclick="'location.href=\'' + @{/myBoard/create} + '\''"
-														class="btn_admin">게시글 등록</button>
+									<button sec:authorize="hasRole('ADMIN')" type="button" th:onclick="'location.href=\'' + @{/myBoard/create} + '\''"
+														class="btn btn-primary">게시글 등록</button>
 							</span>
 						</div>
 					</div>

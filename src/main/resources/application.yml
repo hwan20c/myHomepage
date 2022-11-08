@@ -1,0 +1,28 @@
+app:
+  api:
+    url: http://localhost
+    port: 8090
+    
+spring:
+  devtools:
+    livereload: 
+      enabled : true
+    restart: 
+      enabled : true
+  datasource:
+    username: ENC(HAm5glTbJvO82lKNR6iUuA==)
+    password: ENC(QXusEDVLJ6NFv/PsmW3zUHDiujZRLtI0)
+    url: ENC(n31JYKWsmNglurbpvPgPqYW5RT1wQ2TlPpiCbNGLv9Fbi9wdmjjXaHOZrgTiQc41tn+1KiUjjBXle+jqhMsm4Atmkp4LJaTkL/jp0nE8cwqOuDJolKYuEe/ATvDa/v2HoJBx11wXmGI=)
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor

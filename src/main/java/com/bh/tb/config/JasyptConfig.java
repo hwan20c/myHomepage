@@ -65,4 +65,30 @@ public class JasyptConfig {
 
     return encrpytedText;
   }
+
+  public String getDecrpytedPlainText(String encryptedText) {
+    PooledPBEStringEncryptor standardPBEStringEncryptor = new PooledPBEStringEncryptor ();
+    SimpleStringPBEConfig config = new SimpleStringPBEConfig();
+
+
+    //SET YOUR PASSWORD
+    config.setPassword(getJasyptPassword());
+
+
+    config.setAlgorithm("PBEWithMD5AndDES");
+    config.setKeyObtentionIterations("1000");
+    config.setPoolSize("1");
+    config.setProviderName("SunJCE");
+    config.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator");
+    config.setStringOutputType("base64");
+    standardPBEStringEncryptor.setConfig(config);
+
+    // String encrpytedText = standardPBEStringEncryptor.encrypt(encryptedText);
+    String decrpytedText = standardPBEStringEncryptor.decrypt(encryptedText);
+
+    // System.out.println("@@@@@@@@@@@@@@@ " + encrpytedText);
+    System.out.println("@@@@@@@@@@@@@@@ " + decrpytedText);
+
+    return decrpytedText;
+  }
 }

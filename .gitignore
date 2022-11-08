@@ -46,5 +46,5 @@ out/
 ### Jasypt Password Key ignore ###
 /src/main/resources/jasypt_password.txt
 
-### application.yml ignore ###
+#### application.yml ignore ####
 /src/main/resources/application.yml

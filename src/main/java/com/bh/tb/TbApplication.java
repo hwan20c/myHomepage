@@ -3,7 +3,6 @@ package com.bh.tb;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.bh.tb.config.JasyptConfig;
 import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 
 @SpringBootApplication
@@ -12,9 +11,5 @@ public class TbApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TbApplication.class, args);
-
-		JasyptConfig jasyptConfig = new JasyptConfig();
-
-		jasyptConfig.getDecrpytedPlainText("44TdIqA9TwBnbCEXOqNWY0lP+2HXczAT3VZ7QyWzP40bGHKfPvb7tOiSr1k5DHRhgWSIrRBqWOE=");
 	}
 }

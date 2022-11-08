@@ -20,8 +20,6 @@ public class JasyptConfig {
     PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
     SimpleStringPBEConfig config = new SimpleStringPBEConfig();
     config.setPassword(getJasyptPassword());
-    // config.setPassword("HWAN@1218");
-    System.out.println("@@@@@ : " + getJasyptPassword());
     config.setAlgorithm("PBEWithMD5AndDES");
     config.setKeyObtentionIterations("1000");
     config.setPoolSize("1");
@@ -85,10 +83,7 @@ public class JasyptConfig {
     config.setStringOutputType("base64");
     standardPBEStringEncryptor.setConfig(config);
 
-    // String encrpytedText = standardPBEStringEncryptor.encrypt(encryptedText);
     String decrpytedText = standardPBEStringEncryptor.decrypt(encryptedText);
-
-    // System.out.println("@@@@@@@@@@@@@@@ " + encrpytedText);
     System.out.println("@@@@@@@@@@@@@@@ " + decrpytedText);
 
     return decrpytedText;

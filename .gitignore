@@ -45,3 +45,6 @@ out/
 
 ### Jasypt Password Key igonre ###
 /src/main/resources/jasypt_password.txt
+
+### application.yml igonere ###
+/src/main/resources/application.yml

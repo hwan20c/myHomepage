@@ -10,37 +10,36 @@ $(document).ready(function(){
 	websocket.onclose = onClose;
 	
 	$("#disconn").on("click", (e) => {
-	    disconnect();
+		disconnect();
 	});
 	
 	$("#button-send").on("click", (e) => {
-	    send();
-	    scrollToBottom();
+		send();
+		scrollToBottom();
+		$("#msg").focus();
 	});
 	
 	$("#msg").unbind('keypress').bind('keypress', function(e){
-	    if (e.which == 13){
-	        send()
+		if (e.which == 13) {
+			send()
 			e.stopPropagation();
-	    	e.preventDefault();
-	    	scrollToBottom();
-	    }
+			e.preventDefault();
+			scrollToBottom();
+		}
 	});
 	
 	function send(){
 	
-	   let msg = document.getElementById("msg");
-	
-	   console.log(username + ":" + msg.value);
-	   websocket.send(username + ":" + msg.value);
-	   
-	   msg.value = '';
+		let msg = document.getElementById("msg");
+		console.log(username + ":" + msg.value);
+		websocket.send(username + ":" + msg.value);
+		msg.value = '';
 	}
 	
 	//채팅창에서 나갔을 때
 	function onClose(evt) {
-	    var str = username + ": 님이 방을 나가셨습니다.";
-	    websocket.send(str);
+		var str = username + ": 님이 방을 나가셨습니다.";
+		websocket.send(str);
 	}
 	
 	//채팅창에 들어왔을 때
@@ -58,68 +57,67 @@ $(document).ready(function(){
 	};
 	
 	ipCheck().then(function onOpen(evt) {
-	    var str = username + ": 님이 입장하셨습니다.";
-	    
-	    waitForSocketConnection (websocket, function() {
-            websocket.send(str);
-        });
+		var str = username + ": 님이 입장하셨습니다.";
+		waitForSocketConnection (websocket, function() {
+			websocket.send(str);
+		});
 	});
 	
 	function waitForSocketConnection(socket, callback){
-        setTimeout(
-            function(){
-                if (socket.readyState === 1) {
-                    if(callback !== undefined){
-                        callback();
-                    }
-                    return;
-                } else {
-                    waitForSocketConnection(socket,callback);
-                }
-            }, 5);
-    };
+		setTimeout(
+			function(){
+				if (socket.readyState === 1) {
+					if(callback !== undefined){
+							callback();
+					}
+					return;
+				} else {
+					waitForSocketConnection(socket,callback);
+				}
+			}, 5);
+	};
 	
 	
 	function onMessage(msg) {
-	    var data = msg.data;
-	    var sessionId = null;
-	    //데이터를 보낸 사람
-	    var message = null;
-	    var arr = data.split(":");
-	
-	    for(var i=0; i<arr.length; i++){
-	        console.log('arr[' + i + ']: ' + arr[i]);
-	    }
-	
-	    var cur_session = username;
-	
-	    //현재 세션에 로그인 한 사람
-	    console.log("cur_session : " + cur_session);
-	    sessionId = arr[0];
-	    message = arr[1];
-	
-	    console.log("sessionID : " + sessionId);
-	    console.log("cur_session : " + cur_session);
-	
-	    //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
-	    if(sessionId == cur_session){
-	        var str = "<div class='col-6'>";
-	        str += "<div class='alert alert-secondary'>";
-	        str += "<b>" + sessionId + " : " + message + "</b>";
-	        str += "</div></div>";
-	        $("#msgArea").append(str);
-	    }
-	    else{
-	        var str = "<div class='col-6'>";
-	        str += "<div class='alert alert-warning'>";
-	        str += "<b>" + sessionId + " : " + message + "</b>";
-	        str += "</div></div>";
-	        $("#msgArea").append(str);
-	    }
+		var data = msg.data;
+		var sessionId = null;
+		//데이터를 보낸 사람
+		var message = null;
+		var arr = data.split(":");
+
+		for(var i=0; i<arr.length; i++){
+			console.log('arr[' + i + ']: ' + arr[i]);
+		}
+
+		var cur_session = username;
+
+		//현재 세션에 로그인 한 사람
+		console.log("cur_session : " + cur_session);
+		sessionId = arr[0];
+		message = arr[1];
+
+		console.log("sessionID : " + sessionId);
+		console.log("cur_session : " + cur_session);
+
+		//로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
+		if(sessionId == cur_session){
+			var str = "<div class='col-6'>";
+			str += "<div class='alert alert-secondary'>";
+			str += "<b>" + sessionId + " : " + message + "</b>";
+			str += "</div></div>";
+			$("#msgArea").append(str);
+		}
+		else{
+			var str = "<div class='col-6'>";
+			str += "<div class='alert alert-warning'>";
+			str += "<b>" + sessionId + " : " + message + "</b>";
+			str += "</div></div>";
+			$("#msgArea").append(str);
+		}
 	}
 	
 	function scrollToBottom (){
-		$('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
+		$('html,body').animate({scrollTop: document.body.scrollHeight}, "fast");
 	};
 
 });

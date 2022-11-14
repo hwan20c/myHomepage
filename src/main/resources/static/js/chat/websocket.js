@@ -2,8 +2,9 @@ $(document).ready(function(){
 
 	//local
 	// const websocket = new WebSocket("ws://localhost:8080/ws/chat");
-	//amazon
-	const websocket = new WebSocket("ws://cb0h.cf/ws/chat");
+	
+	//aws
+	const websocket = new WebSocket("wss://cb0h.cf/ws/chat");
 	
 	websocket.onmessage = onMessage;
 	websocket.onopen = ipCheck;
@@ -49,7 +50,7 @@ $(document).ready(function(){
 		return new Promise(function(resolve, reject) {
 			$.getJSON("https://api.ipify.org?format=jsonp&callback=?",		
 			function(json) {
-				var ipArray=json.ip.split('.');
+				var ipArray = json.ip.split('.');
 				username = ipArray[0]+"."+ipArray[1];
 				resolve(json);
 			});		
@@ -61,6 +62,7 @@ $(document).ready(function(){
 		waitForSocketConnection (websocket, function() {
 			websocket.send(str);
 		});
+		heartbeat();
 	});
 	
 	function waitForSocketConnection(socket, callback){
@@ -116,8 +118,17 @@ $(document).ready(function(){
 		}
 	}
 	
-	function scrollToBottom (){
+	function scrollToBottom() {
 		$('html,body').animate({scrollTop: document.body.scrollHeight}, "fast");
+	};
+
+	function heartbeat() {
+		if(!websocket) return;
+		if(websocket.readyState !== 1) return;
+		let today = new Date();
+		websocket.send("heartbeat " + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds());
+		console.log("heartbeat signal")
+		setTimeout(heartbeat, 30000);
 	};
 
 });

@@ -18,8 +18,10 @@ public class WebSocketConfig implements WebSocketConfigurer{
 
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-		registry.addHandler(chatHandler, "/ws/chat").setAllowedOriginPatterns("*")
+		registry.addHandler(chatHandler, "/ws/chat")
+						.setAllowedOriginPatterns("*")
 						.withSockJS()
+						.setClientLibraryUrl("https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.2/sockjs.js")
 						.setHeartbeatTime(30000);
 	}
 

@@ -1,10 +1,10 @@
 $(document).ready(function(){
 
 	//local
-	// const websocket = new WebSocket("ws://localhost:8080/ws/chat");
+	// const websocket = new SockJS("http://localhost:8080/ws/chat", null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
 	
 	//aws
-	const websocket = new WebSocket("ws://cb0h.cf/ws/chat");
+	const websocket = new SockJS("http://cb0h.cf/ws/chat", null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
 	
 	websocket.onmessage = onMessage;
 	websocket.onopen = ipCheck;

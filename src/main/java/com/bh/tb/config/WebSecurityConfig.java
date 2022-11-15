@@ -37,6 +37,8 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http
+			.headers().frameOptions().sameOrigin()
+			.and()
 			.authorizeRequests().antMatchers("/files/**").permitAll()
 			.antMatchers("/").permitAll()
 			.antMatchers("/myBoard/create").hasAnyRole("ADMIN")

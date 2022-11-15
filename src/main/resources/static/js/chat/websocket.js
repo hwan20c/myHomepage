@@ -4,7 +4,7 @@ $(document).ready(function(){
 	// const websocket = new WebSocket("ws://localhost:8080/ws/chat");
 	
 	//aws
-	const websocket = new WebSocket("wss://cb0h.cf/ws/chat");
+	const websocket = new WebSocket("ws://cb0h.cf/ws/chat");
 	
 	websocket.onmessage = onMessage;
 	websocket.onopen = ipCheck;

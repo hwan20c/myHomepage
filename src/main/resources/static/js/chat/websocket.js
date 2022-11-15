@@ -41,6 +41,7 @@ $(document).ready(function(){
 	function onClose(evt) {
 		var str = username + ": 님이 방을 나가셨습니다.";
 		websocket.send(str);
+		console.log(str);
 	}
 	
 	//채팅창에 들어왔을 때
@@ -62,7 +63,7 @@ $(document).ready(function(){
 		waitForSocketConnection (websocket, function() {
 			websocket.send(str);
 		});
-		heartbeat();
+		// heartbeat();
 	});
 	
 	function waitForSocketConnection(socket, callback){

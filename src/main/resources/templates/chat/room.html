@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{base/base}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>chat</title>
+  </head>
+  <body>
+    <th:block th:replace="~{/layout/basic :: setContent(~{this :: content})}">
+      <th:block th:fragment="content">
+
+        <div class="container">
+          <div class="col-6">
+            <h1>[[${room.name}]]</h1>
+          </div>
+            <div id="msgArea" class="col"></div>
+            <div class="col-6">
+              <div class="input-group mb-3">
+                <input type="text" id="msg" class="form-control">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
+                </div>
+              </div>
+            </div>
+          <div class="col-6"></div>
+        </div>
+          
+      </th:block>
+    </th:block>
+  </body>
+  <div layout:fragment="script_area">
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script th:src="@{/js/chat/room.js}"></script>
+  </div>
+</html>

@@ -3,33 +3,33 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{base/base}">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-<title>chat</title>
-</head>
- <body>
-	<div layout:fragment="page_content" id="chatLayout">
-        <th:block th:fragment="content">
-	        <div class="container" id="chatArea">
-	            <div class="col-6">
-	                <label><b>채팅방</b></label>
-	            </div>
-	            <div>
-	                <div id="msgArea" class="col"></div>
-	                <div class="col-6">
-	                    <div class="input-group mb-3">
-	                        <input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-	                        <div class="input-group-append">
-	                            <button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-    	</th:block>
-	</div>
-    </body>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+		<title>chat</title>
+	</head>
+	<body>
+		<div layout:fragment="page_content" id="chatLayout">
+			<th:block th:fragment="content">
+				<div class="container" id="chatArea">
+					<div class="col-6">
+						<label><b>채팅방</b></label>
+					</div>
+					<div>
+						<div id="msgArea" class="col"></div>
+							<div class="col-6">
+								<div class="input-group mb-3">
+									<input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+									<div class="input-group-append">
+										<button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+			</th:block>
+		</div>
+	</body>
 	<div layout:fragment="script_area">
 		<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 		<script th:src="@{/js/chat/websocket.js}"></script>

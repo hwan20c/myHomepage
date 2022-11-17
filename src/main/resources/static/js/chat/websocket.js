@@ -1,14 +1,14 @@
 $(document).ready(function(){
 
 	//local
-	// const websocket = new SockJS("http://localhost:8080/ws/chat", null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
+	const sock = new SockJS("http://cb0h.cf/ws/chat", null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
 	
 	//aws
-	const websocket = new SockJS("/ws/chat", null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
+	// const sock = new SockJS("/ws/chat", null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
 	
-	websocket.onmessage = onMessage;
-	websocket.onopen = ipCheck;
-	websocket.onclose = onClose;
+	sock.onmessage = onMessage;
+	sock.onopen = ipCheck;
+	sock.onclose = onClose;
 	
 	$("#disconn").on("click", (e) => {
 		disconnect();
@@ -33,14 +33,14 @@ $(document).ready(function(){
 	
 		let msg = document.getElementById("msg");
 		console.log(username + ":" + msg.value);
-		websocket.send(username + ":" + msg.value);
+		sock.send(username + ":" + msg.value);
 		msg.value = '';
 	}
 	
 	//채팅창에서 나갔을 때
 	function onClose(evt) {
 		var str = username + ": 님이 방을 나가셨습니다.";
-		websocket.send(str);
+		sock.send(str);
 		console.log(str);
 	}
 	
@@ -60,8 +60,8 @@ $(document).ready(function(){
 	
 	ipCheck().then(function onOpen(evt) {
 		var str = username + ": 님이 입장하셨습니다.";
-		waitForSocketConnection (websocket, function() {
-			websocket.send(str);
+		waitForSocketConnection (sock, function() {
+			sock.send(str);
 		});
 		// heartbeat();
 	});
@@ -124,10 +124,10 @@ $(document).ready(function(){
 	};
 
 	function heartbeat() {
-		if(!websocket) return;
-		if(websocket.readyState !== 1) return;
+		if(!sock) return;
+		if(sock.readyState !== 1) return;
 		let today = new Date();
-		websocket.send("heartbeat " + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds());
+		sock.send("heartbeat " + today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds());
 		console.log("heartbeat signal")
 		setTimeout(heartbeat, 30000);
 	};

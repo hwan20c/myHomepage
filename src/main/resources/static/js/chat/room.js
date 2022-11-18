@@ -1,8 +1,8 @@
 $(document).ready(function(){
   console.log(roomName + ", " + roomId + ", " + username);
-  var sockJs = new SockJS("/stomp/chat");
+  const sockJs = new SockJS("/stomp/chat");
   //1. SockJS를 내부에 들고있는 stomp를 내어줌
-  var stomp = Stomp.over(sockJs);
+  const stomp = Stomp.over(sockJs);
 
   //2. connection이 맺어지면 실행
   stomp.connect({}, function (){
@@ -10,10 +10,13 @@ $(document).ready(function(){
 
     //4. subscribe(path, callback)으로 메세지를 받을 수 있음
     stomp.subscribe("/sub/chat/room/" + roomId, function (chat) {
-    var content = JSON.parse(chat.body);
+    let content = JSON.parse(chat.body);
 
-    var writer = content.writer;
-    var str = '';
+    let writer = content.writer;
+    let str = '';
+    let message = content.message;
+
+    // let message = document.getElementById("msg");
 
     if(writer === username){
       str = "<div class='col-6'>";
@@ -30,7 +33,6 @@ $(document).ready(function(){
       $("#msgArea").append(str);
     }
 
-    $("#msgArea").append(str);
     });
 
     //3. send(path, header, message)로 메세지를 보낼 수 있음
@@ -38,7 +40,7 @@ $(document).ready(function(){
   });
 
   $("#button-send").on("click", function(e){
-    var msg = document.getElementById("msg");
+    let msg = document.getElementById("msg");
 
     console.log(username + ":" + msg.value);
     stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username}));

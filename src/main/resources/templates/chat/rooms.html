@@ -9,7 +9,7 @@
     <title>chat</title>
   </head>
   <body>
-    <div layout:fragment="page_content">
+    <div layout:fragment="page_content" id="chatLayout">
       <div class="container">
         <div>
           <ul th:each="room : ${list}">
@@ -27,8 +27,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script th:inline="javascript">
-      var roomName = [[${roomName}]];
+      const roomName = [[${roomName}]];
     </script>
+    <script th:src="@{/js/chat/chat.js}"></script>
     <script th:src="@{/js/chat/rooms.js}"></script>
   </div>
 </html>

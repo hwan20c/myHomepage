@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.bh.tb.dto.ChatRoomDTO;
 import com.bh.tb.repository.ChatRoomRepository;
 
 import lombok.RequiredArgsConstructor;

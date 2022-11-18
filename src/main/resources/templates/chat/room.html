@@ -31,8 +31,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script th:inline="javascript">
-        let roomName = [[${room.name}]];
-        let roomId = [[${room.roomId}]];
+        let roomName = /* [[${room.name}]] */ null;
+        let roomId = /* [[${room.roomId}]] */ null;
         let username = "hi";
     </script>
     <script th:src="@{/js/chat/chat.js}"></script>

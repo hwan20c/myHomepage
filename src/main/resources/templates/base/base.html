@@ -34,7 +34,7 @@
 						<a class="nav-link" th:href="@{'/myBoard'}">myBoard</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" th:href="@{'/chat'}">Chat</a>
+						<a class="nav-link" th:href="@{'/chat/rooms'}">Chat</a>
 					</li>
 				</ul>
 				<div>
@@ -75,7 +75,6 @@
 		const token = $('meta[name="_csrf"]').attr('content');
 	</script>
 	<script th:src="@{/js/base/todo.js}"></script>
-	<script th:src="@{/js/base/login.js}"></script>
 	<div layout:fragment="script_area"></div>
 </body>
 </html>

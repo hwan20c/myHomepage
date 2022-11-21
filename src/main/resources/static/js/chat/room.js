@@ -1,4 +1,13 @@
 $(document).ready(function(){
+  let username = localStorage.getItem("username");
+
+  if(username === null) {
+    const randomnumber = new Uint16Array(1);
+    window.crypto.getRandomValues(randomnumber);
+    username = `Guest${randomnumber[0]}`;
+    localStorage.setItem("username", username);
+  }
+
   console.log(roomName + ", " + roomId + ", " + username);
   const sockJs = new SockJS("/stomp/chat");
   //1. SockJS를 내부에 들고있는 stomp를 내어줌
@@ -16,16 +25,13 @@ $(document).ready(function(){
     let str = '';
     let message = content.message;
 
-    // let message = document.getElementById("msg");
-
-    if(writer === username){
+    if(writer === username) {
       str = "<div class='col-6'>";
       str += "<div class='alert alert-secondary'>";
       str += "<b>" + writer + " : " + message + "</b>";
       str += "</div></div>";
       $("#msgArea").append(str);
-    }
-    else{
+    } else {
       str = "<div class='col-6'>";
       str += "<div class='alert alert-warning'>";
       str += "<b>" + writer + " : " + message + "</b>";
@@ -40,10 +46,29 @@ $(document).ready(function(){
   });
 
   $("#button-send").on("click", function(e){
-    let msg = document.getElementById("msg");
+    send();
+    scrollToBottom();
+    $("#msg").focus();
+  });
 
+  $("#msg").unbind('keypress').bind('keypress', function(e){
+		if (e.which == 13) {
+      send();
+			e.stopPropagation();
+			e.preventDefault();
+			scrollToBottom();
+      $("#msg").focus();
+		}
+	});
+
+  function scrollToBottom() {
+		$('html,body').animate({scrollTop: document.body.scrollHeight}, "fast");
+	};
+
+  function send() {
+    let msg = document.getElementById("msg");
     console.log(username + ":" + msg.value);
     stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username}));
     msg.value = '';
-  });
+  }
 });

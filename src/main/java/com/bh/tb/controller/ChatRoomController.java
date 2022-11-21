@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.bh.tb.dto.ChatRoomDTO;
 import com.bh.tb.repository.ChatRoomRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -17,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping(value = "/chat")
-public class RoomController {
+public class ChatRoomController {
 
   private final ChatRoomRepository repository;
 
@@ -32,9 +31,9 @@ public class RoomController {
 
   //채팅방 개설
   @PostMapping(value = "/room")
-  public String create(@RequestParam String name, RedirectAttributes rttr){
-    System.out.println("# Create Chat Room , name: " + name);
-    rttr.addFlashAttribute("roomName", repository.createChatRoomDTO(name));
+  public String create(@RequestParam String roomName, @RequestParam String roomPassword, RedirectAttributes rttr){
+    System.out.println("# Create Chat Room , name: " + roomName);
+    rttr.addFlashAttribute("roomName", repository.createChatRoomDTO(roomName));
     return "redirect:/chat/rooms";
   }
 

@@ -11,17 +11,33 @@
   <body>
     <div layout:fragment="page_content" id="chatLayout">
       <div class="container">
-        <div>
-          <ul th:each="room : ${list}">
-            <li><a th:href="@{/chat/room(roomId=${room.roomId})}">[[${room.name}]]</a></li>
+
+        <div class="rooms_area m-4">
+          <ul class="list-group" th:each="room : ${list}">
+            <li class="list-group-item">
+              <a th:href="@{/chat/room(roomId=${room.roomId})}">[[${room.name}]]</a>
+            </li>
           </ul>
         </div>
-      </div>
-      <form th:action="@{/chat/room}" method="post">
-        <input type="text" name="name" class="form-control">
-        <button class="btn btn-secondary">개설하기</button>
-      </form>
-      </div>
+        
+        <div class="create_room_area ml-4 mr-4">
+          <form th:action="@{/chat/room}" method="post">
+            <div class="row">
+              <div class="col">
+                <input type="text" placeholder="방 이름" name="roomName" class="form-control">
+              </div>
+              <div class="col">
+                <input type="text" placeholder="방 비밀번호(공백시 공개방)" name="roomPassword" class="form-control">
+              </div>
+              <div class="col text-right">
+                <button class="btn btn-secondary">개설하기</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>  
+    </div>
   </body>
   <div layout:fragment="script_area">
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>

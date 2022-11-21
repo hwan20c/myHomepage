@@ -15,13 +15,21 @@ public class ChatRoomDTO {
 
   private String roomId;
   private String name;
+  private String password;
   private Set<WebSocketSession> sessions = new HashSet<>();
-
+  
   public static ChatRoomDTO create(String name) {
     ChatRoomDTO room = new ChatRoomDTO();
-
     room.roomId = UUID.randomUUID().toString();
     room.name = name;
+    return room;
+  }
+
+  public static ChatRoomDTO create(String name, String password) {
+    ChatRoomDTO room = new ChatRoomDTO();
+    room.roomId = UUID.randomUUID().toString();
+    room.name = name;
+    room.password = password;
     return room;
   }
   

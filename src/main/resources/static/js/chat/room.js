@@ -8,7 +8,7 @@ $(document).ready(function(){
     localStorage.setItem("username", username);
   }
 
-  console.log(roomName + ", " + roomId + ", " + username);
+  console.log(roomName + ", " + roomPassword + ", " + roomId + ", " + username);
   const sockJs = new SockJS("/stomp/chat");
   //1. SockJS를 내부에 들고있는 stomp를 내어줌
   const stomp = Stomp.over(sockJs);

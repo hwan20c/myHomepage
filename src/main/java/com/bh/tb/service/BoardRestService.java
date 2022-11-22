@@ -30,9 +30,9 @@ public class BoardRestService {
   public BoardRestService(RestTemplate restTemplate,
                           @Value("${app.api.url}") String tbApiUrl,
                           @Value("${app.api.port}") String tbApiPort) {
-      this.restTemplate = restTemplate;
-      this.BOARD_API_SERVER = tbApiUrl + ":" + tbApiPort + "/api/boards";
-    }
+    this.restTemplate = restTemplate;
+    this.BOARD_API_SERVER = tbApiUrl + ":" + tbApiPort + "/api/boards";
+  }
 
   public PageableResponse<Board> listwithPageable(String search) {
     ResponseEntity<PageableResponse<Board>> response

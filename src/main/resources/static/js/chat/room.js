@@ -71,4 +71,19 @@ $(document).ready(function(){
     stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username}));
     msg.value = '';
   }
+
 });
+
+function passwordCheck(){
+  let password = prompt("Please enter the password.");
+  if (password==="ilikepie"){
+
+  } else if (password!='' && password!=null) {
+    while(password !=="ilikepie"){
+        password = prompt("Please enter the password.");
+    }
+    window.location="realpage.html";
+  }
+}
+
+window.onload=passwordCheck;

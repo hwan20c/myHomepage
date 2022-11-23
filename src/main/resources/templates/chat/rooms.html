@@ -23,7 +23,7 @@
           </ul>
         </div>
         
-        <div class="create_room_area ml-4 mr-4" th:if="${list.size le 10}">
+        <div class="create_room_area ml-4 mr-4" th:if="${list.size lt 3}">
           <form th:action="@{/chat/room}" method="post">
             <div class="row">
               <div class="col">
@@ -38,8 +38,9 @@
             </div>
           </form>
         </div>
-        <div th:unless="${list.size le 10}">
-          방 최대 개수는 10개 입니다. 방을 없애고 싶으면 관리자에게 문의하세요.
+
+        <div th:unless="${list.size ne 3}">
+          방 최대 개수는 3개 입니다. 방을 없애고 싶으면 관리자에게 문의하세요.
         </div>
 
       </div>  

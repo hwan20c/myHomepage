@@ -1,28 +1,27 @@
-/*
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// +++++++++++++++++++++++++++++++++++++++++ DB 붙으면 작성 ++++++++++++++++++++++++++++++++++++++++
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+package com.bh.tb.service;
 
-package com.bh.tb.repository;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.bh.tb.config.JasyptConfig;
 import com.bh.tb.dto.ChatRoomDTO;
 
-@Repository
-public class ChatRoomRepository {
-  
+@Service
+public class ChatRoomService {
+
   private Map<String, ChatRoomDTO> chatRoomDTOMap;
   private final JasyptConfig jasyptConfig;
 
   @Autowired
-  public ChatRoomRepository(JasyptConfig jasyptConfig) {
+  public ChatRoomService(JasyptConfig jasyptConfig) {
     this.jasyptConfig = jasyptConfig;
   }
   
@@ -30,12 +29,11 @@ public class ChatRoomRepository {
   private void init() {
     chatRoomDTOMap = new LinkedHashMap<>();
   }
-
+  
   public List<ChatRoomDTO> findAllRooms() {
 
     List<ChatRoomDTO> result = new ArrayList<>(chatRoomDTOMap.values());
     Collections.reverse(result);
-
     return result;
   }
 
@@ -46,16 +44,19 @@ public class ChatRoomRepository {
   public ChatRoomDTO createChatRoomDTO(String name) {
     ChatRoomDTO room = ChatRoomDTO.create(name);
     chatRoomDTOMap.put(room.getRoomId(), room);
-
     return room;
   }
   
   public ChatRoomDTO createChatRoomDTO(String name, String password) {
     ChatRoomDTO room = ChatRoomDTO.create(name, jasyptConfig.getEncryptedPlainText(password));
     chatRoomDTOMap.put(room.getRoomId(), room);
-    
     return room;
   }
 
+  public boolean checkPassword(String roomId, String enteredPassword) {
+
+    return true;
+  }
+
+  
 }
-*/

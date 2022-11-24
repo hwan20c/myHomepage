@@ -31,9 +31,13 @@ public class ChatRoomService {
   }
   
   public List<ChatRoomDTO> findAllRooms() {
-
     List<ChatRoomDTO> result = new ArrayList<>(chatRoomDTOMap.values());
     Collections.reverse(result);
+
+    for(String key : chatRoomDTOMap.keySet()) {
+      // String value = (String) chatRoomDTOMap.get(key);
+      System.out.println("@@@@ ---" + key + " : " );
+    }
     return result;
   }
 
@@ -53,9 +57,16 @@ public class ChatRoomService {
     return room;
   }
 
-  public boolean checkPassword(String roomId, String enteredPassword) {
+  public boolean checkPassword(String roomPassword, String enteredPassword) {
+    String decryptedPassword = jasyptConfig.getDecrpytedPlainText(roomPassword);
+    if(decryptedPassword.equals(enteredPassword)) {
+      return true;
+    }
+    return false;
+  }
 
-    return true;
+  public void removeRoom(String roomId) {
+    chatRoomDTOMap.remove(roomId);
   }
 
   

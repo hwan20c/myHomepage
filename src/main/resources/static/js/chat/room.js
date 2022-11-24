@@ -1,4 +1,35 @@
 $(document).ready(function(){
+
+  function passwordCheck(){
+    const password = prompt("비밀번호를 입력해주세요.");
+
+    $.ajax({
+      type: 'GET',
+      url: _ctx + '/chat/checkRoomPassword',
+      headers: {
+        'X-CSRF-TOKEN': token
+      },
+      data : { 'roomPassword' : roomPassword ,
+               'insertPassword' : password }
+    }).done(function(answer) {
+      if(!answer) {
+        if(!alert ("비밀번호가 다릅니다.")) {
+          document.location = window.history.back();
+        }
+      } 
+    }).fail(function(error) {
+      console.log('[ Error Response ]\n' + error)
+    });
+    
+    if (password===null) {
+      window.history.back();
+    }
+  }
+  
+  if(roomPassword !== null) {
+    passwordCheck();
+  }
+  
   let username = localStorage.getItem("username");
 
   if(username === null) {
@@ -70,20 +101,6 @@ $(document).ready(function(){
     console.log(username + ":" + msg.value);
     stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, writer: username}));
     msg.value = '';
-  }
-
+  };
+  
 });
-
-function passwordCheck(){
-  let password = prompt("Please enter the password.");
-  if (password==="ilikepie"){
-
-  } else if (password!='' && password!=null) {
-    while(password !=="ilikepie"){
-        password = prompt("Please enter the password.");
-    }
-    window.location="realpage.html";
-  }
-}
-
-window.onload=passwordCheck;

@@ -15,7 +15,7 @@
 
         <div class="rooms_area m-4">
           <ul class="list-group" th:each="room : ${list}">
-            <li class="list-group-item">
+            <li class="list-group-item" value="${room.id}">
               <a th:href="@{/chat/room(roomId=${room.roomId})}">[[${room.name}]]  </a>
               <a sec:authorize="hasRole('ADMIN')" th:href="@{/}"> <i class="fas fa-times float-right ml-3" aria-hidden="true" style="color: red;"></i> </a>
               <i class="fas fa-lock float-right" th:classappend="${room.password} != null ? 'visible' : 'invisible'"></i>
@@ -52,7 +52,9 @@
     <script th:inline="javascript">
       /*[+ 
       const roomName = [[|${roomName}|]];
+      const roomId = [[|${list}|]];
       +]*/
+      console.log(roomId);
     </script>
     <script th:src="@{/js/chat/chat.js}"></script>
     <script th:src="@{/js/chat/rooms.js}"></script>

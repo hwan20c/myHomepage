@@ -2,18 +2,14 @@ $(document).ready(function(){
 
 	if(roomName != null)
 		alert(roomName.name + " 방이 개설되었습니다.");
-
-  $(".btn-create").on("click", function (e){
-    e.preventDefault();
-    const name = $("input[name='roomName']").val();
-    if(name == "") {
-			alert("Please write the name.");
-		} else {
-    	$("form").submit();
-		}
+ 
+  $('[name=delete_btn]').click(function(){
+    const roomId = ($(this).closest('li').data('value'));
+    removeRoom(roomId);
+    return false;
   });
 
-	function removeRoom() {
+  function removeRoom(roomId) {
     $.ajax({
       type: 'DELETE',
       url: _ctx + '/chat',
@@ -23,6 +19,7 @@ $(document).ready(function(){
       data : { 'roomId' : roomId }
     }).done(function(answer) {
       alert("방이 삭제 되었습니다. // " + answer);
+      location.reload();
     }).fail(function(error) {
       console.log('[ Error Response ]\n' + error)
     });

@@ -33,11 +33,6 @@ public class ChatRoomService {
   public List<ChatRoomDTO> findAllRooms() {
     List<ChatRoomDTO> result = new ArrayList<>(chatRoomDTOMap.values());
     Collections.reverse(result);
-
-    for(String key : chatRoomDTOMap.keySet()) {
-      // String value = (String) chatRoomDTOMap.get(key);
-      System.out.println("@@@@ ---" + key + " : " );
-    }
     return result;
   }
 

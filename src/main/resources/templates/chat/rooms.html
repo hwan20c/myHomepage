@@ -13,11 +13,11 @@
     <div layout:fragment="page_content" id="chatLayout">
       <div class="container">
 
-        <div class="rooms_area m-4">
+        <div class="rooms_area m-4" id="room_list">
           <ul class="list-group" th:each="room : ${list}">
-            <li class="list-group-item" value="${room.id}">
-              <a th:href="@{/chat/room(roomId=${room.roomId})}">[[${room.name}]]  </a>
-              <a sec:authorize="hasRole('ADMIN')" th:href="@{/}"> <i class="fas fa-times float-right ml-3" aria-hidden="true" style="color: red;"></i> </a>
+            <li class="list-group-item" th:data-value="${room.roomId}">
+              <a th:href="@{/chat/room(roomId=${room.roomId})}">[[${room.name}]]</a>
+              <a sec:authorize="hasRole('ADMIN')" href="#" name="delete_btn"> <i class="fas fa-times float-right ml-3" aria-hidden="true" style="color: red;"></i> </a>
               <i class="fas fa-lock float-right" th:classappend="${room.password} != null ? 'visible' : 'invisible'"></i>
             </li>
           </ul>
@@ -27,10 +27,10 @@
           <form th:action="@{/chat/room}" method="post">
             <div class="row">
               <div class="col">
-                <input type="text" placeholder="방 이름" name="roomName" class="form-control">
+                <input type="text" placeholder="방 이름" name="roomName" class="form-control" required maxlength="20">
               </div>
               <div class="col">
-                <input type="text" placeholder="방 비밀번호(공백시 공개방)" name="roomPassword" class="form-control">
+                <input type="text" placeholder="방 비밀번호(공백시 공개방)" name="roomPassword" class="form-control" maxlength="20">
               </div>
               <div class="col text-right">
                 <button class="btn btn-secondary">개설하기</button>
@@ -40,7 +40,7 @@
         </div>
 
         <div th:unless="${list.size ne 3}">
-          방 최대 개수는 3개 입니다. 방을 없애고 싶으면 관리자에게 문의하세요.
+          방의 최대 개수는 3개 입니다. 방을 없애고 싶으면 관리자에게 문의하세요.
         </div>
 
       </div>  
@@ -52,9 +52,7 @@
     <script th:inline="javascript">
       /*[+ 
       const roomName = [[|${roomName}|]];
-      const roomId = [[|${list}|]];
       +]*/
-      console.log(roomId);
     </script>
     <script th:src="@{/js/chat/chat.js}"></script>
     <script th:src="@{/js/chat/rooms.js}"></script>

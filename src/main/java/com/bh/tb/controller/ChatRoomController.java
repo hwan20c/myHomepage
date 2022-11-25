@@ -61,6 +61,7 @@ public class ChatRoomController {
 
   //채팅방 삭제
   @DeleteMapping
+  @ResponseBody
   public String removeRoom(@RequestParam("roomId") String roomId) {
     chatRoomService.removeRoom(roomId);
     return "success";

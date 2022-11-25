@@ -1,5 +1,7 @@
 package com.bh.tb.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,11 +27,12 @@ public class ChatRoomController {
 
   //채팅방 목록 조회
   @GetMapping(value = "/rooms")
-  public ModelAndView rooms(){
+  public String rooms(HttpServletRequest request, Model model){
     System.out.println("# All Chat Rooms");
-    ModelAndView mv = new ModelAndView("chat/rooms");
-    mv.addObject("list", chatRoomService.findAllRooms());
-    return mv;
+    // ModelAndView mv = new ModelAndView("chat/rooms");
+    // mv.addObject("list", chatRoomService.findAllRooms());
+    model.addAttribute("list", chatRoomService.findAllRooms());
+    return "chat/rooms";
   }
 
   //채팅방 개설

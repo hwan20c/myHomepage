@@ -8,7 +8,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 @EnableWebSocketMessageBroker
 @Configuration
-public class StompConfig implements WebSocketMessageBrokerConfigurer{
+public class StompConfig implements WebSocketMessageBrokerConfigurer {
   
   @Override
   public void registerStompEndpoints(StompEndpointRegistry registry) {
@@ -16,7 +16,8 @@ public class StompConfig implements WebSocketMessageBrokerConfigurer{
               // .setAllowedOrigins("http://localhost:8080")
               // .setAllowedOrigins("https://cb0h.cf:8080")
               .setAllowedOrigins("*")
-              .withSockJS();
+              .withSockJS()
+              .setClientLibraryUrl("https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.2/sockjs.js");
   }
 
   @Override

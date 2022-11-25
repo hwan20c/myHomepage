@@ -39,7 +39,7 @@ public class WebSecurityConfig {
 		http
 			.headers().frameOptions().sameOrigin()
 			.and()
-			.authorizeRequests().antMatchers("/files/**", "/stomp/chat").permitAll()
+			.authorizeRequests().antMatchers("/files/**").permitAll()
 			.antMatchers("/").permitAll()
 			.antMatchers("/myBoard/create").hasAnyRole("ADMIN")
 			.antMatchers(HttpMethod.DELETE, "/myBoard/{id}").hasAnyRole("ADMIN")

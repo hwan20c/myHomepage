@@ -13,8 +13,6 @@ public class StompConfig implements WebSocketMessageBrokerConfigurer {
   @Override
   public void registerStompEndpoints(StompEndpointRegistry registry) {
       registry.addEndpoint("/stomp/chat")
-              // .setAllowedOrigins("http://localhost:8080")
-              // .setAllowedOrigins("https://cb0h.cf:8080")
               .setAllowedOriginPatterns("*")
               .withSockJS()
               .setClientLibraryUrl("https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.2/sockjs.js");

@@ -15,7 +15,7 @@ public class StompConfig implements WebSocketMessageBrokerConfigurer {
       registry.addEndpoint("/stomp/chat")
               // .setAllowedOrigins("http://localhost:8080")
               // .setAllowedOrigins("https://cb0h.cf:8080")
-              .setAllowedOrigins("*")
+              .setAllowedOriginPatterns("*")
               .withSockJS()
               .setClientLibraryUrl("https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.2/sockjs.js");
   }

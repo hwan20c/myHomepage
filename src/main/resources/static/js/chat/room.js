@@ -40,7 +40,7 @@ $(document).ready(function(){
   }
 
   console.log(roomName + ", " + roomPassword + ", " + roomId + ", " + username);
-  const sockJs = new SockJS("https://cb0h.cf/stomp/chat");
+  const sockJs = new SockJS("/stomp/chat");
   //1. SockJS를 내부에 들고있는 stomp를 내어줌
   const stomp = Stomp.over(sockJs);
 
